@@ -12,6 +12,7 @@
   "author": "CH2-PS156",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "mysql": "^2.18.1"
   }
 }

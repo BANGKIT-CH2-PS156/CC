@@ -1,9 +1,9 @@
 const response = (statusCode, message, data, res) => {
   res.status(statusCode).json({
     status: statusCode,
-    message: message,
-    data: data,
+    message,
+    data,
   });
 };
 
-module.exports=response;
+module.exports = response;
