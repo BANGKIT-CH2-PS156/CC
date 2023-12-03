@@ -5,9 +5,10 @@ const allUsers = async (req, res) => {
   try {
     const [data] = await userModel.allUsers();
     console.log(data);
-    response(200, "Response Success", data, res);
+    response.res200(data, res);
   } catch (error) {
-    response(500, "Internal Server Error", error, res);
+    console.log(error)
+    response.res500(null, res);
   }
 };
 

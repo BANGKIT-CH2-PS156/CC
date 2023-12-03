@@ -1,7 +1,7 @@
 const response = require("./../response");
 
 const notFound = (req, res) => {
-  response(404, "URL not Found", null, res);
+  response.res404("URL not found", res);
 };
 
 module.exports = notFound;

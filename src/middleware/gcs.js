@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Multer = require("multer");
-const imgUpload = require("./../config/uploadgcp");
+const imgUpload = require("../config/gcs");
 
 const multer = Multer({
   storage: Multer.MemoryStorage,

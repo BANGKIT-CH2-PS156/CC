@@ -1,18 +1,17 @@
 "use strict";
 const { Storage } = require("@google-cloud/storage");
-const fs = require("fs");
 const moment = require("moment-timezone");
 const path = require("path");
 
 const pathKey = path.resolve("./serviceaccountkey.json");
 
-// TODO: Sesuaikan konfigurasi Storage
+//Cloud Storage configuration
 const gcs = new Storage({
   projectId: "learn-gcp-405910",
   keyFilename: pathKey,
 });
 
-// TODO: Tambahkan nama bucket yang digunakan
+//add bucket name
 const bucketName = "uploadcoffee";
 const bucket = gcs.bucket(bucketName);
 
