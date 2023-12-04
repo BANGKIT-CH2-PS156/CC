@@ -9,7 +9,6 @@ const { auth } = require("./middleware/authorization");
 //call router
 const rootRouter = require("./routes/root");
 const usersRouter = require("./routes/users");
-const gcpUpload = require("./middleware/gcs");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -20,7 +19,6 @@ app.use(logs);
 //use router
 app.use("/", rootRouter);
 app.use("/users", auth, usersRouter);
-app.use(gcpUpload);
 
 //use page page not found
 app.use(notFound);

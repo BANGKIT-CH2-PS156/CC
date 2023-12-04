@@ -4,21 +4,21 @@ const jwt = require("jsonwebtoken");
 const response = require("../response");
 const userModel = require("./../model/users");
 const {
-  nodemailer,
   google,
   oauth2Client,
   scopes,
-  oAuth2ClientMail,
+  sendMail,
 } = require("../config/googleauth");
 
 const root = (req, res) => {
   response.res200("CH2-PS156 API v.1.0.0 ready to use", res);
 };
 
+//register new account
 const register = async (req, res) => {
   try {
     const { email, password, confirmPassword } = req.body;
-    //check req is not empty
+    //check input is not empty
     if (!email || !password) {
       response.res400("Please input email or password", res);
       return;
@@ -33,16 +33,46 @@ const register = async (req, res) => {
       console.log(data.email);
       return response.res400("User is already exists", res);
     }
+    //send verification email
+    try {
+      sendMail(email);
+    } catch (error) {
+      console.log("Failed to send verification email");
+      console.log(error);
+      response.res500(null, res);
+    }
     //Insert new data to database
     const pwHashed = await bcrypt.hash(password, 11);
     await userModel.addUser(email, pwHashed);
     response.res201("Data successfully created", res);
   } catch (error) {
-    response.res500(null, res);
+    console.log("Registration failed");
     console.log(error.message);
+    response.res500(null, res);
   }
 };
 
+//verify account
+const verifyEmail = async (req, res) => {
+  const { email } = req.params;
+  const emailVerify = Buffer.from(email, "base64").toString("utf-8");
+  try {
+    //check verify account
+    const [[user]] = await userModel.oneUser(emailVerify);
+    if (user.verify) {
+      return response.res400("Email has been verified", res);
+    }
+    //verifying email
+    await userModel.verifyEmail(emailVerify);
+    console.log(`Successfully verify ${emailVerify}`);
+    response.res201(`Successfully verify ${emailVerify}`, res);
+  } catch (error) {
+    console.log(error.message);
+    response.res500(null, res);
+  }
+};
+
+//user login
 const login = async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -61,6 +91,14 @@ const login = async (req, res) => {
     if (!check) {
       return response.res403("Incorrect Password", res);
     }
+    //check verify account
+    if (!data.verify) {
+      return response.res403(
+        "Please verify your email first - check your email inbox",
+        res
+      );
+    }
+
     //give token
     const payload = { id: data.id, email: data.email };
     const expiresIn = 60 * 60 * 1; //1 hour
@@ -77,80 +115,66 @@ const login = async (req, res) => {
 
 //google redirect to authorization google account
 const googleAuthorization = (req, res) => {
-  const authUrl = oauth2Client.generateAuthUrl({
-    access_type: "offline",
-    scope: scopes,
-    include_granted_scopes: true,
-  });
-  console.log("Redirect...");
-  res.redirect(authUrl);
+  try {
+    const authUrl = oauth2Client.generateAuthUrl({
+      access_type: "offline",
+      scope: scopes,
+      include_granted_scopes: true,
+    });
+    res.redirect(authUrl);
+  } catch (error) {
+    response.res500(null, res);
+    console.log(error.message);
+  }
 };
 
 //callback from google after authentication
 const googleCallback = async (req, res) => {
-  const { code } = req.query;
-
-  const { tokens } = await oauth2Client.getToken(code.toString());
-
-  oauth2Client.setCredentials(tokens);
-
-  const oauth2 = google.oauth2({
-    auth: oauth2Client,
-    version: "v2",
-  });
-
-  const { data } = await oauth2.userinfo.get();
-
-  if (!data.email || !data.name) {
-    return res.json({
-      data: data,
-    });
-  }
-
-  console.log(data);
-  return res.json({
-    data: data,
-  });
-};
-
-//send gmail
-const sendMail = async (req, res) => {
-  oAuth2ClientMail.setCredentials({ refresh_token: process.env.REFRESH_TOKEN });
   try {
-    const accessToken = await oAuth2ClientMail.getAccessToken();
+    const { code } = req.query;
 
-    const transport = nodemailer.createTransport({
-      service: "gmail",
-      auth: {
-        type: "OAuth2",
-        user: "c614bsy3787@bangkit.academy",
-        clientId: process.env.GOOGLE_CLIENT_ID,
-        clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-        refreshToken: process.env.REFRESH_TOKEN,
-        accessToken: accessToken,
-      },
+    const { tokens } = await oauth2Client.getToken(code.toString());
+
+    oauth2Client.setCredentials(tokens);
+
+    const oauth2 = google.oauth2({
+      auth: oauth2Client,
+      version: "v2",
     });
 
-    const mailOptions = {
-      from: "Fajri <yours authorised email c614bsy3787@bangkit.academy>",
-      to: "theflashyellow45@gmail.com",
-      subject: "Hello from gmail using API 2",
-      text: "Hello from gmail email using API 2",
-      html: "<h1>Hello from gmail email using API 2</h1>",
-    };
+    const { data } = await oauth2.userinfo.get();
 
-    const result = await transport.sendMail(mailOptions);
-    console.log(result);
-    res.send("berhasil mengirim email");
-    return result;
+    if (!data.email || !data.name) {
+      return res.json({
+        data: data,
+      });
+    }
+
+    //give token
+    const payload = { id: data.id, email: data.email };
+    const expiresIn = 60 * 60 * 1; //1 hour
+    const token = jwt.sign(payload, process.env.JWT_SECRET, {
+      expiresIn: expiresIn,
+    });
+
+    const user = {
+      name: data.name,
+      email: data.email,
+      img: data.picture,
+      verify: 1,
+    };
+    console.log({ user, token });
+    return response.res200(token, res);
   } catch (error) {
-    return error;
+    response.res500(null, res);
+    console.log(error.message);
   }
 };
 
 module.exports = {
   root,
   register,
+  verifyEmail,
   login,
   googleAuthorization,
   googleCallback,
