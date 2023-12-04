@@ -18,10 +18,23 @@ const addUser = (email, password) => {
   const sql = `INSERT INTO users (email,password,name) VALUES ('${email}','${password}','${name}')`;
   return db.execute(sql);
 };
+//add user via google account
+const addUserGoogle = (email, name, img) => {
+  //inset to database
+  const defaultPw = "user-login-by-google-account";
+  const sql = `INSERT INTO users (email,password,name,img,verify) 
+              VALUES ('${email}','${defaultPw}','${name}','${img}',1)`;
+  return db.execute(sql);
+};
 //verify email
 const verifyEmail = (email) => {
   const sql = `UPDATE users SET verify=1 WHERE email='${email}'`;
   return db.execute(sql);
 };
 
-module.exports = { allUsers, oneUser, addUser, verifyEmail };
+const updateUser = (email, name, job, address, phone) => {
+  const sql = `UPDATE users SET name='${name}',job='${job}',address='${address}',phone='${phone}' WHERE email='${email}',`;
+  return db.execute(sql);
+};
+
+module.exports = { allUsers, oneUser, addUser, addUserGoogle, verifyEmail, updateUser };

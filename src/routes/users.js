@@ -16,4 +16,6 @@ router
     usersController.testUpload
   );
 
+router.route("/update").post(usersController.updateUser);
+
 module.exports = router;

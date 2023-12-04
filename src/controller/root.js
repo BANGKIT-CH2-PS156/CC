@@ -1,6 +1,6 @@
+const moment = require("moment-timezone");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-
 const response = require("../response");
 const userModel = require("./../model/users");
 const {
@@ -9,6 +9,8 @@ const {
   scopes,
   sendMail,
 } = require("../config/googleauth");
+
+const currentTime = moment().format("YYYYMMDD-HHmmss");
 
 const root = (req, res) => {
   response.res200("CH2-PS156 API v.1.0.0 ready to use", res);
@@ -98,15 +100,16 @@ const login = async (req, res) => {
         res
       );
     }
-
     //give token
-    const payload = { id: data.id, email: data.email };
-    const expiresIn = 60 * 60 * 1; //1 hour
-    const token = jwt.sign(payload, process.env.JWT_SECRET, {
-      expiresIn: expiresIn,
-    });
-    console.log(token);
-    response.res200(token, res);
+    const payload = { id: data.id, email: data.email, entryTime:currentTime };
+    const token = jwt.sign(payload, process.env.JWT_SECRET);
+
+    const user = {
+      email: data.email,
+      name: data.name,
+      token: token,
+    };
+    response.res200(user, res);
   } catch (error) {
     response.res500(null, res);
     console.log(error.message);
@@ -121,6 +124,7 @@ const googleAuthorization = (req, res) => {
       scope: scopes,
       include_granted_scopes: true,
     });
+    console.log("User login via google account...");
     res.redirect(authUrl);
   } catch (error) {
     response.res500(null, res);
@@ -145,31 +149,31 @@ const googleCallback = async (req, res) => {
     const { data } = await oauth2.userinfo.get();
 
     if (!data.email || !data.name) {
-      return res.json({
-        data: data,
-      });
+      console.log(data);
+      return response.res500(null, res);
     }
 
     //give token
-    const payload = { id: data.id, email: data.email };
-    const expiresIn = 60 * 60 * 1; //1 hour
-    const token = jwt.sign(payload, process.env.JWT_SECRET, {
-      expiresIn: expiresIn,
-    });
-
+    const payload = { id: data.id, email: data.email, entryTime:currentTime };
+    const token = jwt.sign(payload, process.env.JWT_SECRET);
     const user = {
-      name: data.name,
       email: data.email,
-      img: data.picture,
-      verify: 1,
+      name: data.name,
+      token: token,
     };
-    console.log({ user, token });
-    return response.res200(token, res);
+    //check user in database
+    const [[userExists]] = await userModel.oneUser(data.email);
+    if (!userExists) {
+      await userModel.addUserGoogle(data.email, data.name, data.picture);
+    }
+    return response.res200(user, res);
   } catch (error) {
     response.res500(null, res);
     console.log(error.message);
   }
 };
+
+const logout = (req, res) => {};
 
 module.exports = {
   root,
@@ -179,4 +183,5 @@ module.exports = {
   googleAuthorization,
   googleCallback,
   sendMail,
+  logout,
 };
