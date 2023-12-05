@@ -7,4 +7,10 @@ const db = mysql.createConnection({
   database: process.env.DB_NAME,
 });
 
+db.connect();
+
+db.on('error',(error)=>{
+  console.log('db error pak')
+})
+
 module.exports = db.promise();

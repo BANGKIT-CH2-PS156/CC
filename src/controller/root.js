@@ -1,8 +1,9 @@
 const moment = require("moment-timezone");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const response = require("../response");
+const response = require("./../response");
 const userModel = require("./../model/users");
+const blacklist = require("./../config/blacklist");
 const {
   google,
   oauth2Client,
@@ -101,7 +102,7 @@ const login = async (req, res) => {
       );
     }
     //give token
-    const payload = { id: data.id, email: data.email, entryTime:currentTime };
+    const payload = { id: data.id, email: data.email, entryTime: currentTime };
     const token = jwt.sign(payload, process.env.JWT_SECRET);
 
     const user = {
@@ -154,7 +155,7 @@ const googleCallback = async (req, res) => {
     }
 
     //give token
-    const payload = { id: data.id, email: data.email, entryTime:currentTime };
+    const payload = { id: data.id, email: data.email, entryTime: currentTime };
     const token = jwt.sign(payload, process.env.JWT_SECRET);
     const user = {
       email: data.email,
@@ -173,7 +174,15 @@ const googleCallback = async (req, res) => {
   }
 };
 
-const logout = (req, res) => {};
+const logout = (req, res) => {
+  const { authorization } = req.headers;
+
+  //add token to blacklist
+  blacklist.push(authorization);
+  console.log(blacklist);
+
+  response.res200("Logout successful", res);
+};
 
 module.exports = {
   root,
