@@ -9,6 +9,7 @@ const { auth } = require("./middleware/authorization");
 //call router
 const rootRouter = require("./routes/root");
 const usersRouter = require("./routes/users");
+const postingRouter = require("./routes/posting");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -19,6 +20,7 @@ app.use(logs);
 //use router
 app.use("/", rootRouter);
 app.use("/users", auth, usersRouter);
+app.use("/posting", postingRouter);
 
 //use page page not found
 app.use(notFound);

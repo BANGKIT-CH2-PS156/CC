@@ -12,8 +12,6 @@ const auth = (req, res, next) => {
     return response.res401("Token has been revoked", res);
   }
 
-  console.log(blacklist);
-
   const secret = process.env.JWT_SECRET;
   try {
     const jwtDecode = jwt.verify(authorization, secret);

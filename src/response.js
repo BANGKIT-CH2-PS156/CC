@@ -1,60 +1,82 @@
+const resLogin = (data,token, res) => {
+  res.status(200).json({
+    code: "200",
+    status: "OK",
+    message: "Log in Successful",
+    data,
+    token
+  });
+};
+
+const resLogout = (message, res) => {
+  res.status(200).json({
+    code: "200",
+    status: "OK",
+    message
+  });
+};
+
 const res200 = (data, res) => {
   res.status(200).json({
-    status: 200,
-    message: "OK",
+    code: "200",
+    status: "OK",
+    message: "Response Success",
     data,
   });
 };
 
 const res201 = (data, res) => {
   res.status(201).json({
-    status: 201,
-    message: "Created",
+    code: 201,
+    status: "Created",
+    message: "Successful create or update data",
     data,
   });
 };
 
-const res400 = (data, res) => {
+const res400 = (message, res) => {
   res.status(400).json({
-    status: 400,
-    message: "Bad Request",
-    data,
+    code: "400",
+    status: "Bad Request",
+    message,
   });
 };
 
-const res401 = (data, res) => {
+const res401 = (message, res) => {
   res.status(401).json({
-    status: 401,
-    message: "Unauthorized",
-    data,
+    code: "401",
+    status: "Unauthorized",
+    message,
   });
 };
 
-const res403 = (data, res) => {
+const res403 = (message, res) => {
   res.status(403).json({
-    status: 403,
-    message: "Forbidden",
-    data,
+    code: "403",
+    status: "Forbidden",
+    message,
   });
 };
 
-const res404 = (data, res) => {
+const res404 = (message, res) => {
   res.status(404).json({
-    status: 404,
-    message: "Not Found",
-    data,
+    code: "404",
+    status: "Not Found",
+    message,
   });
 };
 
-const res500 = (data, res) => {
+const res500 = (message, res) => {
   res.status(500).json({
-    status: 500,
-    message: "Internal Server Error",
-    data,
+    code: "500",
+    status: "Internal Server Error",
+    message,
   });
 };
 
 module.exports = {
+  resLogin,
+  resLogout,
   res200,
   res201,
   res400,

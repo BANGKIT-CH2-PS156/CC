@@ -1,7 +1,7 @@
 const db = require("./../config/connection");
 //get all user
 const allUsers = () => {
-  const sql = "SELECT * FROM users";
+  const sql = "SELECT email,name,job,address,phone,img FROM users";
   return db.execute(sql);
 };
 //get one user by email

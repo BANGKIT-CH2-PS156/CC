@@ -108,9 +108,8 @@ const login = async (req, res) => {
     const user = {
       email: data.email,
       name: data.name,
-      token: token,
     };
-    response.res200(user, res);
+    response.resLogin(user, token, res);
   } catch (error) {
     response.res500(null, res);
     console.log(error.message);
@@ -118,26 +117,20 @@ const login = async (req, res) => {
 };
 
 //google redirect to authorization google account
-const googleAuthorization = (req, res) => {
-  try {
-    const authUrl = oauth2Client.generateAuthUrl({
-      access_type: "offline",
-      scope: scopes,
-      include_granted_scopes: true,
-    });
-    console.log("User login via google account...");
-    res.redirect(authUrl);
-  } catch (error) {
-    response.res500(null, res);
-    console.log(error.message);
-  }
-};
-
-//callback from google after authentication
-const googleCallback = async (req, res) => {
+const googleAuthorization = async (req, res) => {
   try {
     const { code } = req.query;
-
+    //check if callback from google is not yet
+    if (!code) {
+      const authUrl = oauth2Client.generateAuthUrl({
+        access_type: "offline",
+        scope: scopes,
+        include_granted_scopes: true,
+      });
+      console.log("User login via google account...");
+      return res.redirect(authUrl);
+    }
+    //set response to client and give token when google give callback
     const { tokens } = await oauth2Client.getToken(code.toString());
 
     oauth2Client.setCredentials(tokens);
@@ -160,14 +153,13 @@ const googleCallback = async (req, res) => {
     const user = {
       email: data.email,
       name: data.name,
-      token: token,
     };
     //check user in database
     const [[userExists]] = await userModel.oneUser(data.email);
     if (!userExists) {
       await userModel.addUserGoogle(data.email, data.name, data.picture);
     }
-    return response.res200(user, res);
+    return response.resLogin(user, token, res);
   } catch (error) {
     response.res500(null, res);
     console.log(error.message);
@@ -176,12 +168,16 @@ const googleCallback = async (req, res) => {
 
 const logout = (req, res) => {
   const { authorization } = req.headers;
+  const maxBlacklist = 50;
+
+  if (blacklist.length >= maxBlacklist) {
+    blacklist.splice(0, 25); //delete token blacklist as many as 25 data starting from index 0
+  }
 
   //add token to blacklist
   blacklist.push(authorization);
-  console.log(blacklist);
 
-  response.res200("Logout successful", res);
+  response.resLogout("Logout successful", res);
 };
 
 module.exports = {
@@ -190,7 +186,6 @@ module.exports = {
   verifyEmail,
   login,
   googleAuthorization,
-  googleCallback,
   sendMail,
   logout,
 };

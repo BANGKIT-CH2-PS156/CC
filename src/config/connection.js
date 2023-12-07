@@ -10,7 +10,7 @@ const db = mysql.createConnection({
 db.connect();
 
 db.on('error',(error)=>{
-  console.log('db error pak')
+  console.log('Databasenya belom hidup tuh pak')
 })
 
 module.exports = db.promise();

@@ -39,17 +39,18 @@ const sendMail = async (userTarget) => {
     const emailEncrypt = Buffer.from(userTarget).toString("base64");
     const link = `http://localhost:5000/verify/${emailEncrypt}`;
     const mailOptions = {
-      from: `Coffee Git Team <yours authorised email ${process.env.MY_EMAIL}>`,
+      from: `CoffeeGit Team <yours authorised email ${process.env.MY_EMAIL}>`,
       to: userTarget,
       subject: "User Email Verification",
-      text: "Bismillah,",
-      html: `<h1>Email Verification</h1><p>Hello coffee lover, please verify your email to start great experience with us. Click link: <a href="${link}"><i>${link}</i></a></p>`,
+      text: "Bismillah, email verify",
+      html: `<h3>Email Verification</h3><p>Hello coffee lover, please verify your email to start great experience with us. Click link: <a href="${link}"><i>${link}</i></a></p>`,
     };
 
     const result = await transport.sendMail(mailOptions);
     console.log(`Send email verification to ${userTarget}`);
     return result;
   } catch (error) {
+    console.log(error)
     return error;
   }
 };
