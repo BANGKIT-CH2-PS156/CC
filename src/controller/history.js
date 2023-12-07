@@ -8,7 +8,7 @@ const allHistory = async (req, res) => {
     response.res200(data, res);
   } catch (error) {
     console.log(error);
-    response.res500("Sorry Server Error", res);
+    response.res500(res);
   }
 };
 
@@ -20,7 +20,7 @@ const addHistory = async (req, res) => {
     response.res201("Success add data", res);
   } catch (error) {
     console.log(error);
-    response.res500("Sorry Server Error", res);
+    response.res500(res);
   }
 };
 

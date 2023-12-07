@@ -7,7 +7,7 @@ const allPosting = async (req, res) => {
     response.res200(data, res);
   } catch (error) {
     console.log(error);
-    response.res500("Sorry Server Error", res);
+    response.res500(res);
   }
 };
 
@@ -18,7 +18,7 @@ const allPostingByUser = async (req, res) => {
     response.res200(data, res);
   } catch (error) {
     console.log(error);
-    response.res500("Sorry Server Error", res);
+    response.res500(res);
   }
 };
 
@@ -26,10 +26,10 @@ const addPosting = async (req, res) => {
   try {
     const { idUser, caption, img } = req.body;
     await postingModel.addPosting(idUser, caption, img);
-    response.res200("Success add new posting", res);
+    response.res201("Success add new posting", res);
   } catch (error) {
     console.log(error);
-    response.res500("Sorry Server Error", res);
+    response.res500(res);
   }
 };
 
@@ -38,10 +38,10 @@ const updatePosting = async (req, res) => {
     const { id } = req.params;
     const { caption, img } = req.body;
     await postingModel.updatePosting(id, caption, img);
-    response.res200("Success update the posting", res);
+    response.res201("Success update the posting", res);
   } catch (error) {
     console.log(error);
-    response.res500("Sorry Server Error", res);
+    response.res500(res);
   }
 };
 
@@ -52,7 +52,7 @@ const deletePosting = async (req, res) => {
     response.res200("Success delete the posting", res);
   } catch (error) {
     console.log(error);
-    response.res500("Sorry Server Error", res);
+    response.res500(res);
   }
 };
 

@@ -44,7 +44,7 @@ const multerUpload = (req, res, next) => {
     });
   } catch (error) {
     console.log(error);
-    return response.res500(null, res);
+    return response.res500(res);
   }
 };
 
@@ -96,7 +96,7 @@ ImgUpload.uploadToGcs = (req, res, next) => {
     stream.end(req.file.buffer);
   } catch (error) {
     console.log(error);
-    response.res500(null, res);
+    response.res500(res);
   }
 };
 

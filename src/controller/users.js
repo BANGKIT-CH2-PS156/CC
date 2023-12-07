@@ -7,7 +7,7 @@ const allUsers = async (req, res) => {
     response.res200(data, res);
   } catch (error) {
     console.log(error);
-    response.res500(null, res);
+    response.res500(res);
   }
 };
 

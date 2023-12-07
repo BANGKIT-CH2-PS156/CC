@@ -8,7 +8,7 @@ const resLogin = (data,token, res) => {
   });
 };
 
-const resLogout = (message, res) => {
+const res200Msg = (message, res) => {
   res.status(200).json({
     code: "200",
     status: "OK",
@@ -25,12 +25,11 @@ const res200 = (data, res) => {
   });
 };
 
-const res201 = (data, res) => {
+const res201 = (message, res) => {
   res.status(201).json({
     code: 201,
     status: "Created",
-    message: "Successful create or update data",
-    data,
+    message
   });
 };
 
@@ -66,17 +65,17 @@ const res404 = (message, res) => {
   });
 };
 
-const res500 = (message, res) => {
+const res500 = (res) => {
   res.status(500).json({
     code: "500",
     status: "Internal Server Error",
-    message,
+    message: "Sorry our server get error"
   });
 };
 
 module.exports = {
   resLogin,
-  resLogout,
+  res200Msg,
   res200,
   res201,
   res400,

@@ -14,7 +14,7 @@ const {
 const currentTime = moment().format("YYYYMMDD-HHmmss");
 
 const root = (req, res) => {
-  response.res200("CH2-PS156 API v.1.0.0 ready to use", res);
+  response.res200Msg("CH2-PS156 API v.1.0.0 ready to use", res);
 };
 
 //register new account
@@ -42,16 +42,15 @@ const register = async (req, res) => {
     } catch (error) {
       console.log("Failed to send verification email");
       console.log(error);
-      response.res500(null, res);
+      response.res500(res);
     }
     //Insert new data to database
     const pwHashed = await bcrypt.hash(password, 11);
     await userModel.addUser(email, pwHashed);
-    response.res201("Data successfully created", res);
+    response.res201("Data successfully added", res);
   } catch (error) {
-    console.log("Registration failed");
     console.log(error.message);
-    response.res500(null, res);
+    response.res500(res);
   }
 };
 
@@ -71,7 +70,7 @@ const verifyEmail = async (req, res) => {
     response.res201(`Successfully verify ${emailVerify}`, res);
   } catch (error) {
     console.log(error.message);
-    response.res500(null, res);
+    response.res500(res);
   }
 };
 
@@ -111,7 +110,7 @@ const login = async (req, res) => {
     };
     response.resLogin(user, token, res);
   } catch (error) {
-    response.res500(null, res);
+    response.res500(res);
     console.log(error.message);
   }
 };
@@ -144,7 +143,7 @@ const googleAuthorization = async (req, res) => {
 
     if (!data.email || !data.name) {
       console.log(data);
-      return response.res500(null, res);
+      return response.res500(res);
     }
 
     //give token
@@ -161,23 +160,28 @@ const googleAuthorization = async (req, res) => {
     }
     return response.resLogin(user, token, res);
   } catch (error) {
-    response.res500(null, res);
+    response.res500(res);
     console.log(error.message);
   }
 };
 
 const logout = (req, res) => {
-  const { authorization } = req.headers;
-  const maxBlacklist = 50;
+  try {
+    const { authorization } = req.headers;
+    const maxBlacklist = 50;
 
-  if (blacklist.length >= maxBlacklist) {
-    blacklist.splice(0, 25); //delete token blacklist as many as 25 data starting from index 0
+    if (blacklist.length >= maxBlacklist) {
+      blacklist.splice(0, 25); //delete token blacklist as many as 25 data starting from index 0
+    }
+
+    //add token to blacklist
+    blacklist.push(authorization);
+
+    response.res200Msg("Logout successful", res);
+  } catch (error) {
+    console.log(error);
+    response.res500(res);
   }
-
-  //add token to blacklist
-  blacklist.push(authorization);
-
-  response.resLogout("Logout successful", res);
 };
 
 module.exports = {
