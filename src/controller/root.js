@@ -122,7 +122,7 @@ const googleAuthorization = async (req, res) => {
     //check if callback from google is not yet
     if (!code) {
       const authUrl = oauth2Client.generateAuthUrl({
-        access_type: "offline",
+        access_type: "online",
         scope: scopes,
         include_granted_scopes: true,
       });

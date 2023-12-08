@@ -37,7 +37,7 @@ const sendMail = async (userTarget) => {
     });
     //encrypt email di use in parameter link
     const emailEncrypt = Buffer.from(userTarget).toString("base64");
-    const link = `http://localhost:5000/verify/${emailEncrypt}`;
+    const link = `${process.env.DOMAIN}/verify/${emailEncrypt}`;
     const mailOptions = {
       from: `CoffeeGit Team <yours authorised email ${process.env.MY_EMAIL}>`,
       to: userTarget,
