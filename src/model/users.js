@@ -32,8 +32,8 @@ const verifyEmail = (email) => {
   return db.execute(sql);
 };
 
-const updateUser = (email, name, job, address, phone) => {
-  const sql = `UPDATE users SET name='${name}',job='${job}',address='${address}',phone='${phone}' WHERE email='${email}',`;
+const updateUser = (email, name, job, address, phone, img) => {
+  const sql = `UPDATE users SET name='${name}',job='${job}',address='${address}',phone='${phone}',img='${img}' WHERE email='${email}'`;
   return db.execute(sql);
 };
 

@@ -10,7 +10,7 @@ const { auth } = require("./middleware/authorization");
 const rootRouter = require("./routes/root");
 const usersRouter = require("./routes/users");
 const postingRouter = require("./routes/posting");
-const historyRouter = require("./routes/history");
+const predictRouter = require("./routes/predict");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -21,8 +21,8 @@ app.use(logs);
 //use router
 app.use("/", rootRouter);
 app.use("/users", auth, usersRouter);
-app.use("/posting", postingRouter);
-app.use("/check", historyRouter);
+app.use("/posting", auth, postingRouter);
+app.use("/predict", auth, predictRouter);
 
 //use page page not found
 app.use(notFound);

@@ -9,16 +9,25 @@ const auth = (req, res, next) => {
   }
 
   if (blacklist.includes(authorization)) {
-    return response.res401("Token has been revoked", res);
+    return response.res401("Sorry token has been revoked", res);
   }
-
+  const token = authorization.split(' ')[1] //authorization.split if we testing token with authorization bearer in postman
+  // const token = authorization //get token with headers menu in postman
   const secret = process.env.JWT_SECRET;
   try {
-    const jwtDecode = jwt.verify(authorization, secret);
-    req.user = jwtDecode;
+    const jwtDecode = jwt.verify(token, secret); 
+    const email = jwtDecode.email;
+    const emailEncrypt = Buffer.from(email).toString("base64");
+    const user = {
+      id: jwtDecode.id,
+      email: jwtDecode.email,
+      emailEncrypt: emailEncrypt,
+    };
+    req.user = user; //set data to use in the next
     next();
   } catch (error) {
-    return response.res401("The token is incorrect or has been revoked", res);
+    console.log(error);
+    return response.res401("Sorry token is not valid", res);
   }
 };
 

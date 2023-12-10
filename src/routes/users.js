@@ -10,12 +10,10 @@ const usersController = require("../controller/users");
 router.route("/").get(usersController.allUsers);
 router
   .route("/upload")
-  .post(
-    upload.multerUpload,
-    upload.ImgUpload.uploadToGcs,
-    usersController.testUpload
-  );
+  .post(upload.multerValidation, upload.uploadGcs, usersController.testUpload);
 
-router.route("/update").post(usersController.updateUser);
+router
+  .route("/update")
+  .patch(upload.multerValidation, upload.uploadGcs, usersController.updateUser);
 
 module.exports = router;

@@ -1,4 +1,5 @@
 const db = require("./../config/connection");
+const { v4: uuidv4 } = require("uuid");
 
 const allPosting = () => {
   const sql = "SELECT * FROM posting ORDER BY create_at DESC";
@@ -10,8 +11,14 @@ const allPostingByUser = (idUser) => {
   return db.execute(sql);
 };
 
+const onePosting = (idPosting) => {
+  const sql = `SELECT * FROM posting WHERE id=${idPosting}`;
+  return db.execute(sql);
+};
+
 const addPosting = (idUser, caption, img) => {
-  const sql = `INSERT INTO posting (id_user, caption, img) VALUES ('${idUser}','${caption}','${img}')`;
+  const id = uuidv4();
+  const sql = `INSERT INTO posting (id, id_user, caption, img) VALUES ('${id}','${idUser}','${caption}','${img}')`;
   return db.execute(sql);
 };
 
@@ -28,6 +35,7 @@ const deletePosting = (id) => {
 module.exports = {
   allPosting,
   allPostingByUser,
+  onePosting,
   addPosting,
   updatePosting,
   deletePosting,
