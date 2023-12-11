@@ -18,17 +18,14 @@ const addPredict = async (req, res) => {
     const { id } = req.user;
 
     if (req.file && req.file.cloudStoragePublicUrl) {
-      const imgUrl = req.file.cloudStoragePublicUrl;
-      const img = "https://cdn.discordapp.com/attachments/1170360157256040448/1182592232788856832/00000451.jpg?ex=658541d7&is=6572ccd7&hm=d51410738bba8f5ea111731508050f9ac825764cd45c46aa10a256b12642de32&";
-      console.log(id);
-      console.log(imgUrl);
-      console.log(img);
+      const img = req.file.cloudStoragePublicUrl;
       //use axioo to request data from endpoint model (flask)
-      const predict = await axios.post("http://localhost:8080/predict", { image: `${img}` });
-      // const resPredict = predict
-      console.log(predict.data);
-      return response.res200(predict.data.data, res);
-      // await predictModel.addPredict(id, img, info);
+      const {data} = await axios.post(process.env.ENDPOINT_PREDICT, {
+        image: `${img}`,
+      });
+      const info = data.data.soil_types_prediction;
+      await predictModel.addPredict(id, img, info);
+      return response.res200(data.data, res);
     }
     return response.res400("Image is not Exist", res);
   } catch (error) {

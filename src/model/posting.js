@@ -7,8 +7,8 @@ const allPosting = () => {
 };
 
 const allPostingByUser = (idUser) => {
-  const sql = `SELECT * FROM posting WHERE id_user=${idUser} ORDER BY create_at DESC`;
-  return db.execute(sql);
+  const sql = `SELECT * FROM posting WHERE id_user=? ORDER BY create_at DESC`;
+  return db.execute(sql, [idUser]);
 };
 
 const onePosting = (idPosting) => {

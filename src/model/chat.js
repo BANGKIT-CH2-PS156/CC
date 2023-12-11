@@ -6,8 +6,8 @@ const chatBox = (idSender, idReceiver) => {
 };
 
 const addChat = (idSender, idReceiver, message) => {
-  const sql = `INSERT INTO chat (senderid,receiverid,message) VALUES ('${idSender}','${idReceiver}','${message}')`;
-  return db.execute(sql);
+  const sql = `INSERT INTO chat (senderid,receiverid,message) VALUES (?,?,?)`; //how to prevent sql injection attacks
+  return db.execute(sql, [idSender, idReceiver, message]);
 };
 
 module.exports = { chatBox, addChat };
