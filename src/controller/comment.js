@@ -21,7 +21,7 @@ const addComment = async (req, res) => {
       return response.res400("Please type your comment before sending", res);
     }
     await commentModel.addComment(idPost, idUser, text);
-    response.res200("Success give comment", res);
+    response.res200Msg("Success give comment", res);
   } catch (error) {
     console.log(error);
     response.res500(res);
@@ -35,7 +35,7 @@ const deleteComment = async (req, res) => {
     if (!data.affectedRows) {
       return response.res400("Sorry comment is not exist", res);
     }
-    return response.res200("Success delete comment", res);
+    return response.res200Msg("Success delete comment", res);
   } catch (error) {
     console.log(error);
     response.res500(res);

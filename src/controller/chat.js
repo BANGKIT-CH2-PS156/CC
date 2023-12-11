@@ -22,7 +22,7 @@ const addChat = async (req, res) => {
       return response.res400("Please type message before sending", res);
     }
     await chatModel.addChat(idSender, idReceiver, message);
-    response.res201("Success send message", res);
+    response.res201("Success sending message", res);
   } catch (error) {
     console.log(error);
     response.res500(res);

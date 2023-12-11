@@ -7,6 +7,7 @@ const upload = require("./../middleware/gcsUpload");
 
 router.route("/").get(postingController.allPosting);
 router.route("/user").get(postingController.allPostingByUser);
+router.route("/:idPosting").get(postingController.onePosting);
 router
   .route("/")
   .post(

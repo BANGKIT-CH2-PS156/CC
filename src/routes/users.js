@@ -8,12 +8,14 @@ const upload = require("../middleware/gcsUpload");
 const usersController = require("../controller/users");
 
 router.route("/").get(usersController.allUsers);
+router.route("/one").get(usersController.oneUser);
+
+router
+.route("/")
+.patch(upload.multerValidation, upload.uploadGcs, usersController.updateUser);
+
 router
   .route("/upload")
   .post(upload.multerValidation, upload.uploadGcs, usersController.testUpload);
-
-router
-  .route("/update")
-  .patch(upload.multerValidation, upload.uploadGcs, usersController.updateUser);
 
 module.exports = router;
