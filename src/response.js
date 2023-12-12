@@ -27,7 +27,7 @@ const res200 = (data, res) => {
 
 const res201 = (message, res) => {
   res.status(201).json({
-    code: 201,
+    code: "201",
     status: "Created",
     message
   });

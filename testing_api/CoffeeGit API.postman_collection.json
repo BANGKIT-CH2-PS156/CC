@@ -1,0 +1,5769 @@
+{
+	"info": {
+		"_postman_id": "d11ffdc2-67d4-4996-b6e3-0eb502a3a265",
+		"name": "CoffeeGit API",
+		"description": "Coffee Git API service documentation",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27898805"
+	},
+	"item": [
+		{
+			"name": "Root",
+			"item": [
+				{
+					"name": "Root",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('status code should be 200', () => {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test('response header Content-Type should be application/json', () => {\r",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.equals('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"pm.test('response body should be an object', () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson).to.be.an('object');\r",
+									"});\r",
+									"\r",
+									"pm.test('response body should have correct property and value', () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseJson).to.haveOwnProperty('code');\r",
+									"    pm.expect(responseJson).to.haveOwnProperty('status');\r",
+									"    pm.expect(responseJson).to.haveOwnProperty('message');\r",
+									"\r",
+									"    pm.expect(responseJson.code).to.equals(\"200\");\r",
+									"    pm.expect(responseJson.status).to.equals('OK');\r",
+									"    pm.expect(responseJson.message).to.be.equals('CH2-PS156 API v.1.0.0 ready to use');\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}/",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Root",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{domain}}/",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "75"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4b-aizqqB81LW94f9DHM1cOkUkYLHE\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 11 Dec 2023 09:56:52 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": \"200\",\n    \"status\": \"OK\",\n    \"message\": \"CH2-PS156 API v.1.0.0 ready to use\"\n}"
+						}
+					]
+				}
+			],
+			"description": "Folder Root for testing root (\"/\") endpoint without auth"
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "REGISTER without email",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('status code should be 400', () => {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test('response header Content-Type should be application/json', () => {\r",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.equals('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"pm.test('response body should be an object', () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson).to.be.an('object');\r",
+									"});\r",
+									"\r",
+									"pm.test('response body should have correct property and value', () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseJson).to.haveOwnProperty('code');\r",
+									"    pm.expect(responseJson).to.haveOwnProperty('status');\r",
+									"    pm.expect(responseJson).to.haveOwnProperty('message');\r",
+									"\r",
+									"    pm.expect(responseJson.code).to.equals(\"400\");\r",
+									"    pm.expect(responseJson.status).to.equals('Bad Request');\r",
+									"    pm.expect(responseJson.message).to.be.equals('Please input email or password');\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"\",\r\n    \"password\": \"peserta\",\r\n    \"confirmPassword\": \"peserta\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/register",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "REGISTER without email",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"\",\r\n    \"password\": \"peserta\",\r\n    \"confirmPassword\": \"peserta\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{domain}}/register",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"register"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "80"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"50-MhpqruPbUuJOIYl3LvNYkePiqrA\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 11 Dec 2023 10:03:18 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": \"400\",\n    \"status\": \"Bad Request\",\n    \"message\": \"Please input email or password\"\n}"
+						}
+					]
+				},
+				{
+					"name": "REGISTER without password",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('status code should be 400', () => {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test('response header Content-Type should be application/json', () => {\r",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.equals('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"pm.test('response body should be an object', () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson).to.be.an('object');\r",
+									"});\r",
+									"\r",
+									"pm.test('response body should have correct property and value', () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseJson).to.haveOwnProperty('code');\r",
+									"    pm.expect(responseJson).to.haveOwnProperty('status');\r",
+									"    pm.expect(responseJson).to.haveOwnProperty('message');\r",
+									"\r",
+									"    pm.expect(responseJson.code).to.equals(\"400\");\r",
+									"    pm.expect(responseJson.status).to.equals('Bad Request');\r",
+									"    pm.expect(responseJson.message).to.be.equals('Please input email or password');\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"peserta@gmail.com\",\r\n    \"password\": \"\",\r\n    \"confirmPassword\": \"peserta\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/register",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "REGISTER without password",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"peserta@gmail.com\",\r\n    \"password\": \"\",\r\n    \"confirmPassword\": \"peserta\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{domain}}/register",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"register"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "80"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"50-MhpqruPbUuJOIYl3LvNYkePiqrA\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 11 Dec 2023 10:04:47 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": \"400\",\n    \"status\": \"Bad Request\",\n    \"message\": \"Please input email or password\"\n}"
+						}
+					]
+				},
+				{
+					"name": "REGISTER with different password and confirm Password",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('status code should be 400', () => {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test('response header Content-Type should be application/json', () => {\r",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.equals('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"pm.test('response body should be an object', () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson).to.be.an('object');\r",
+									"});\r",
+									"\r",
+									"pm.test('response body should have correct property and value', () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseJson).to.haveOwnProperty('code');\r",
+									"    pm.expect(responseJson).to.haveOwnProperty('status');\r",
+									"    pm.expect(responseJson).to.haveOwnProperty('message');\r",
+									"\r",
+									"    pm.expect(responseJson.code).to.equals(\"400\");\r",
+									"    pm.expect(responseJson.status).to.equals('Bad Request');\r",
+									"    pm.expect(responseJson.message).to.be.equals('Password is not same');\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"peserta@gmail.com\",\r\n    \"password\": \"peserta\",\r\n    \"confirmPassword\": \"pesertaa\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/register",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "REGISTER with different password and confirm Password",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"peserta@gmail.com\",\r\n    \"password\": \"peserta\",\r\n    \"confirmPassword\": \"pesertaa\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{domain}}/register",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"register"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "70"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"46-BbLmsv5pjRAEE6QFslzeJSCKIng\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 11 Dec 2023 10:05:04 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": \"400\",\n    \"status\": \"Bad Request\",\n    \"message\": \"Password is not same\"\n}"
+						}
+					]
+				},
+				{
+					"name": "REGISTER correct input but email is already",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('status code should be 400', () => {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test('response header Content-Type should be application/json', () => {\r",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.equals('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"pm.test('response body should be an object', () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson).to.be.an('object');\r",
+									"});\r",
+									"\r",
+									"pm.test('response body should have correct property and value', () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseJson).to.haveOwnProperty('code');\r",
+									"    pm.expect(responseJson).to.haveOwnProperty('status');\r",
+									"    pm.expect(responseJson).to.haveOwnProperty('message');\r",
+									"\r",
+									"    pm.expect(responseJson.code).to.equals(\"400\");\r",
+									"    pm.expect(responseJson.status).to.equals('Bad Request');\r",
+									"    pm.expect(responseJson.message).to.be.equals('User is already exists');\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"peserta@gmail.com\",\r\n    \"password\": \"peserta\",\r\n    \"confirmPassword\": \"peserta\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/register",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "REGISTER correct input but email is already",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"peserta@gmail.com\",\r\n    \"password\": \"peserta\",\r\n    \"confirmPassword\": \"peserta\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{domain}}/register",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"register"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "72"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"48-vf7oVdNDxBGp6HayRiWqje/b0L0\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 11 Dec 2023 10:07:20 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": \"400\",\n    \"status\": \"Bad Request\",\n    \"message\": \"User is already exists\"\n}"
+						}
+					]
+				},
+				{
+					"name": "REGISTER correct input but have token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('status code should be 401', () => {\r",
+									"    pm.response.to.have.status(401);\r",
+									"});\r",
+									"\r",
+									"pm.test('response header Content-Type should be application/json', () => {\r",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.equals('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"pm.test('response body should be an object', () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson).to.be.an('object');\r",
+									"});\r",
+									"\r",
+									"pm.test('response body should have correct property and value', () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseJson).to.haveOwnProperty('code');\r",
+									"    pm.expect(responseJson).to.haveOwnProperty('status');\r",
+									"    pm.expect(responseJson).to.haveOwnProperty('message');\r",
+									"\r",
+									"    pm.expect(responseJson.code).to.equals(\"401\");\r",
+									"    pm.expect(responseJson.status).to.equals('Unauthorized');\r",
+									"    pm.expect(responseJson.message).to.be.equals('Sorry your has been Login');\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"peserta@gmail.com\",\r\n    \"password\": \"peserta\",\r\n    \"confirmPassword\": \"peserta\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/register",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "REGISTER correct input but have token",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"peserta@gmail.com\",\r\n    \"password\": \"peserta\",\r\n    \"confirmPassword\": \"peserta\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{domain}}/register",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"register"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "76"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4c-47AZxoHoSxSxUqmL4UjB0Go5pUE\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 11 Dec 2023 10:07:51 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": \"401\",\n    \"status\": \"Unauthorized\",\n    \"message\": \"Sorry your has been Login\"\n}"
+						}
+					]
+				},
+				{
+					"name": "LOGIN without input email",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('status code should be 400', () => {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test('response header Content-Type should be application/json', () => {\r",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.equals('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"pm.test('response body should be an object', () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson).to.be.an('object');\r",
+									"});\r",
+									"\r",
+									"pm.test('response body should have correct property and value', () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseJson).to.haveOwnProperty('code');\r",
+									"    pm.expect(responseJson).to.haveOwnProperty('status');\r",
+									"    pm.expect(responseJson).to.haveOwnProperty('message');\r",
+									"\r",
+									"    pm.expect(responseJson.code).to.equals(\"400\");\r",
+									"    pm.expect(responseJson.status).to.equals('Bad Request');\r",
+									"    pm.expect(responseJson.message).to.be.equals('Please input email or password');\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"\",\r\n    \"password\": \"peserta\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/login",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "LOGIN without input email",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"\",\r\n    \"password\": \"peserta\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{domain}}/login",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"login"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "80"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"50-MhpqruPbUuJOIYl3LvNYkePiqrA\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 11 Dec 2023 10:08:02 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": \"400\",\n    \"status\": \"Bad Request\",\n    \"message\": \"Please input email or password\"\n}"
+						}
+					]
+				},
+				{
+					"name": "LOGIN without input password",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('status code should be 400', () => {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test('response header Content-Type should be application/json', () => {\r",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.equals('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"pm.test('response body should be an object', () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson).to.be.an('object');\r",
+									"});\r",
+									"\r",
+									"pm.test('response body should have correct property and value', () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseJson).to.haveOwnProperty('code');\r",
+									"    pm.expect(responseJson).to.haveOwnProperty('status');\r",
+									"    pm.expect(responseJson).to.haveOwnProperty('message');\r",
+									"\r",
+									"    pm.expect(responseJson.code).to.equals(\"400\");\r",
+									"    pm.expect(responseJson.status).to.equals('Bad Request');\r",
+									"    pm.expect(responseJson.message).to.be.equals('Please input email or password');\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"peserta@gmail.com\",\r\n    \"password\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/login",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "LOGIN without input password",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"peserta@gmail.com\",\r\n    \"password\": \"\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{domain}}/login",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"login"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "80"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"50-MhpqruPbUuJOIYl3LvNYkePiqrA\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 11 Dec 2023 10:08:13 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": \"400\",\n    \"status\": \"Bad Request\",\n    \"message\": \"Please input email or password\"\n}"
+						}
+					]
+				},
+				{
+					"name": "LOGIN with user not found",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('status code should be 403', () => {\r",
+									"    pm.response.to.have.status(403);\r",
+									"});\r",
+									"\r",
+									"pm.test('response header Content-Type should be application/json', () => {\r",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.equals('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"pm.test('response body should be an object', () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson).to.be.an('object');\r",
+									"});\r",
+									"\r",
+									"pm.test('response body should have correct property and value', () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseJson).to.haveOwnProperty('code');\r",
+									"    pm.expect(responseJson).to.haveOwnProperty('status');\r",
+									"    pm.expect(responseJson).to.haveOwnProperty('message');\r",
+									"\r",
+									"    pm.expect(responseJson.code).to.equals(\"403\");\r",
+									"    pm.expect(responseJson.status).to.equals('Forbidden');\r",
+									"    pm.expect(responseJson.message).to.be.equals('User not Found');\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"apeserta@gmail.com\",\r\n    \"password\": \"peserta\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/login",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "LOGIN with user not found",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"apeserta@gmail.com\",\r\n    \"password\": \"peserta\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{domain}}/login",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"login"
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "62"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3e-IAhEb8it99GbBwSUcC04tammdq8\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 11 Dec 2023 10:08:45 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": \"403\",\n    \"status\": \"Forbidden\",\n    \"message\": \"User not Found\"\n}"
+						}
+					]
+				},
+				{
+					"name": "LOGIN with incorrect password",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('status code should be 403', () => {\r",
+									"    pm.response.to.have.status(403);\r",
+									"});\r",
+									"\r",
+									"pm.test('response header Content-Type should be application/json', () => {\r",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.equals('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"pm.test('response body should be an object', () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson).to.be.an('object');\r",
+									"});\r",
+									"\r",
+									"pm.test('response body should have correct property and value', () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseJson).to.haveOwnProperty('code');\r",
+									"    pm.expect(responseJson).to.haveOwnProperty('status');\r",
+									"    pm.expect(responseJson).to.haveOwnProperty('message');\r",
+									"\r",
+									"    pm.expect(responseJson.code).to.equals(\"403\");\r",
+									"    pm.expect(responseJson.status).to.equals('Forbidden');\r",
+									"    pm.expect(responseJson.message).to.be.equals('Incorrect Password');\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"peserta@gmail.com\",\r\n    \"password\": \"pesertaa\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/login",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "LOGIN with incorrect password",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"peserta@gmail.com\",\r\n    \"password\": \"pesertaa\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"login"
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "66"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"42-9xSWykM3SPSBflmHh9M/oJ0Jm/g\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 11 Dec 2023 10:08:56 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": \"403\",\n    \"status\": \"Forbidden\",\n    \"message\": \"Incorrect Password\"\n}"
+						}
+					]
+				},
+				{
+					"name": "LOGIN with correct password but have token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('status code should be 401', () => {\r",
+									"    pm.response.to.have.status(401);\r",
+									"});\r",
+									"\r",
+									"pm.test('response header Content-Type should be application/json', () => {\r",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.equals('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"pm.test('response body should be an object', () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson).to.be.an('object');\r",
+									"});\r",
+									"\r",
+									"pm.test('response body should have correct property and value', () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseJson).to.haveOwnProperty('code');\r",
+									"    pm.expect(responseJson).to.haveOwnProperty('status');\r",
+									"    pm.expect(responseJson).to.haveOwnProperty('message');\r",
+									"\r",
+									"    pm.expect(responseJson.code).to.equals('401');\r",
+									"    pm.expect(responseJson.status).to.equals('Unauthorized');\r",
+									"    pm.expect(responseJson.message).to.equals('Sorry your has been Login');;\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"perserta@gmail.com\",\r\n    \"password\": \"peserta\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/login",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "LOGIN with correct password but have token",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"perserta@gmail.com\",\r\n    \"password\": \"peserta\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"login"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "76"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4c-47AZxoHoSxSxUqmL4UjB0Go5pUE\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 11 Dec 2023 10:09:06 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": \"401\",\n    \"status\": \"Unauthorized\",\n    \"message\": \"Sorry your has been Login\"\n}"
+						}
+					]
+				},
+				{
+					"name": "LOGIN with correct password",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('status code should be 200', () => {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test('response header Content-Type should be application/json', () => {\r",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.equals('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"pm.test('response body should be an object', () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson).to.be.an('object');\r",
+									"});\r",
+									"\r",
+									"pm.test('response body should have correct property and value', () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseJson).to.haveOwnProperty('code');\r",
+									"    pm.expect(responseJson).to.haveOwnProperty('status');\r",
+									"    pm.expect(responseJson).to.haveOwnProperty('message');\r",
+									"    pm.expect(responseJson).to.haveOwnProperty('data');\r",
+									"    pm.expect(responseJson).to.haveOwnProperty('token');\r",
+									"\r",
+									"    pm.expect(responseJson.code).to.equals('200');\r",
+									"    pm.expect(responseJson.status).to.equals('OK');\r",
+									"    pm.expect(responseJson.message).to.equals('Log in Successful');\r",
+									"    pm.expect(responseJson.token).to.be.an('string');\r",
+									"});\r",
+									"\r",
+									"pm.test('response body data should contain token', () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    const { data } = responseJson;\r",
+									"    pm.expect(responseJson.data).to.be.equal(data)\r",
+									"    pm.expect(data).to.not.equals('');\r",
+									"});\r",
+									"\r",
+									"const jsonData = JSON.parse(responseBody);\r",
+									"pm.environment.set(\"token\", jsonData.token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"perserta@gmail.com\",\r\n    \"password\": \"peserta\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/login",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "LOGIN with correct password",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"perserta@gmail.com\",\r\n    \"password\": \"peserta\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "339"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"153-5SL67q2ZI9wScboItfsf8NQ5IwQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 11 Dec 2023 10:09:15 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": \"200\",\n    \"status\": \"OK\",\n    \"message\": \"Log in Successful\",\n    \"data\": {\n        \"email\": \"perserta@gmail.com\",\n        \"name\": \"Fulan\"\n    },\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsImVtYWlsIjoicGVyc2VydGFAZ21haWwuY29tIiwiZW50cnlUaW1lIjoiMjAyMzEyMTEtMTY1MDM2IiwiaWF0IjoxNzAyMjg5MzU1LCJleHAiOjE3MDIzMDAxNTV9.1m10fNl--iKKjUO8Untr5XbroKXkJcKPNgo3F49F36E\"\n}"
+						}
+					]
+				},
+				{
+					"name": "TEST AUTH with wrong or expired token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('status code should be 401', () => {\r",
+									"    pm.response.to.have.status(401);\r",
+									"});\r",
+									"\r",
+									"pm.test('response header Content-Type should be application/json', () => {\r",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.equals('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"pm.test('response body should be an object', () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson).to.be.an('object');\r",
+									"});\r",
+									"\r",
+									"pm.test('response body should have correct property and value', () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseJson).to.haveOwnProperty('code');\r",
+									"    pm.expect(responseJson).to.haveOwnProperty('status');\r",
+									"    pm.expect(responseJson).to.haveOwnProperty('message');\r",
+									"\r",
+									"    pm.expect(responseJson.code).to.equals('401');\r",
+									"    pm.expect(responseJson.status).to.equals('Unauthorized');\r",
+									"    pm.expect(responseJson.message).to.equals('Sorry token is not valid');\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsImVtYWlsIjoicGVyc2VydGFAZ21haWwuY29tIiwiZW50cnlUaW1lIjoiMjAyMzEyMDctMDYwMzIwIiwiaWF0IjoxNzAxOTA0MDc4fQ.lkIfugNNd0uuEk84VNSBhbYtF3jy8xbWVGldkDKDyC8",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{domain}}/users",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "TEST AUTH with wrong or expired token",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsImVtYWlsIjoicGVyc2VydGFAZ21haWwuY29tIiwiZW50cnlUaW1lIjoiMjAyMzEyMDctMDYwMzIwIiwiaWF0IjoxNzAxOTA0MDc4fQ.lkIfugNNd0uuEk84VNSBhbYtF3jy8xbWVGldkDKDyC8",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:5000/users",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"users"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "75"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4b-jaDe8KVZBGcuvAI9WQt9KIdn7E0\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 11 Dec 2023 10:09:30 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": \"401\",\n    \"status\": \"Unauthorized\",\n    \"message\": \"Sorry token is not valid\"\n}"
+						}
+					]
+				},
+				{
+					"name": "LOGOUT but not have token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('status code should be 401', () => {\r",
+									"    pm.response.to.have.status(401);\r",
+									"});\r",
+									"\r",
+									"pm.test('response header Content-Type should be application/json', () => {\r",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.equals('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"pm.test('response body should be an object', () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson).to.be.an('object');\r",
+									"});\r",
+									"\r",
+									"pm.test('response body should have correct property and value', () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseJson).to.haveOwnProperty('code');\r",
+									"    pm.expect(responseJson).to.haveOwnProperty('status');\r",
+									"    pm.expect(responseJson).to.haveOwnProperty('message');\r",
+									"\r",
+									"    pm.expect(responseJson.code).to.equals('401');\r",
+									"    pm.expect(responseJson.status).to.equals('Unauthorized');\r",
+									"    pm.expect(responseJson.message).to.equals('Sorry you are not allow, please log in first');;\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{domain}}/logout",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"logout"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "LOGOUT but not have token",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "http://localhost:5000/logout",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"logout"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "95"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"5f-ZBH0rzC6rGAJ7WqN1fWplaKSnRE\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 11 Dec 2023 10:09:41 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": \"401\",\n    \"status\": \"Unauthorized\",\n    \"message\": \"Sorry you are not allow, please log in first\"\n}"
+						}
+					]
+				},
+				{
+					"name": "LOGOUT Successful",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('status code should be 200', () => {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test('response header Content-Type should be application/json', () => {\r",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.equals('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"pm.test('response body should be an object', () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson).to.be.an('object');\r",
+									"});\r",
+									"\r",
+									"pm.test('response body should have correct property and value', () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseJson).to.haveOwnProperty('code');\r",
+									"    pm.expect(responseJson).to.haveOwnProperty('status');\r",
+									"    pm.expect(responseJson).to.haveOwnProperty('message');\r",
+									"\r",
+									"    pm.expect(responseJson.code).to.equals('200');\r",
+									"    pm.expect(responseJson.status).to.equals('OK');\r",
+									"    pm.expect(responseJson.message).to.equals('Logout successful');;\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{domain}}/logout",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"logout"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "LOGOUT Successful",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "http://localhost:5000/logout",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"logout"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "58"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3a-0frj85ZYbhcd30xCs+ss6NXUw7s\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 11 Dec 2023 10:09:54 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": \"200\",\n    \"status\": \"OK\",\n    \"message\": \"Logout successful\"\n}"
+						}
+					]
+				},
+				{
+					"name": "LOGOUT with Revoked Token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('status code should be 401', () => {\r",
+									"    pm.response.to.have.status(401);\r",
+									"});\r",
+									"\r",
+									"pm.test('response header Content-Type should be application/json', () => {\r",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.equals('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"pm.test('response body should be an object', () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson).to.be.an('object');\r",
+									"});\r",
+									"\r",
+									"pm.test('response body should have correct property and value', () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseJson).to.haveOwnProperty('code');\r",
+									"    pm.expect(responseJson).to.haveOwnProperty('status');\r",
+									"    pm.expect(responseJson).to.haveOwnProperty('message');\r",
+									"\r",
+									"    pm.expect(responseJson.code).to.equals('401');\r",
+									"    pm.expect(responseJson.status).to.equals('Unauthorized');\r",
+									"    pm.expect(responseJson.message).to.equals('Sorry token has been revoked');;\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{domain}}/logout",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"logout"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "LOGOUT with Revoked Token",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "http://localhost:5000/logout",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"logout"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "79"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4f-aOq+1xqckXjbz+PI+gKfIBYKm7E\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 11 Dec 2023 10:10:06 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": \"401\",\n    \"status\": \"Unauthorized\",\n    \"message\": \"Sorry token has been revoked\"\n}"
+						}
+					]
+				},
+				{
+					"name": "TEST AUTH with wrong token revoked (after logout)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('status code should be 401', () => {\r",
+									"    pm.response.to.have.status(401);\r",
+									"});\r",
+									"\r",
+									"pm.test('response header Content-Type should be application/json', () => {\r",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.equals('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"pm.test('response body should be an object', () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson).to.be.an('object');\r",
+									"});\r",
+									"\r",
+									"pm.test('response body should have correct property and value', () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseJson).to.haveOwnProperty('code');\r",
+									"    pm.expect(responseJson).to.haveOwnProperty('status');\r",
+									"    pm.expect(responseJson).to.haveOwnProperty('message');\r",
+									"\r",
+									"    pm.expect(responseJson.code).to.equals('401');\r",
+									"    pm.expect(responseJson.status).to.equals('Unauthorized');\r",
+									"    pm.expect(responseJson.message).to.equals('Sorry token has been revoked');\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{domain}}/users",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "TEST AUTH with wrong token revoked (after logout)",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "http://localhost:5000/users",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"users"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "79"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4f-aOq+1xqckXjbz+PI+gKfIBYKm7E\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 11 Dec 2023 10:11:18 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": \"401\",\n    \"status\": \"Unauthorized\",\n    \"message\": \"Sorry token has been revoked\"\n}"
+						}
+					]
+				},
+				{
+					"name": "LOGIN with correct password Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('status code should be 200', () => {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test('response header Content-Type should be application/json', () => {\r",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.equals('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"pm.test('response body should be an object', () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson).to.be.an('object');\r",
+									"});\r",
+									"\r",
+									"pm.test('response body should have correct property and value', () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseJson).to.haveOwnProperty('code');\r",
+									"    pm.expect(responseJson).to.haveOwnProperty('status');\r",
+									"    pm.expect(responseJson).to.haveOwnProperty('message');\r",
+									"    pm.expect(responseJson).to.haveOwnProperty('data');\r",
+									"    pm.expect(responseJson).to.haveOwnProperty('token');\r",
+									"\r",
+									"    pm.expect(responseJson.code).to.equals('200');\r",
+									"    pm.expect(responseJson.status).to.equals('OK');\r",
+									"    pm.expect(responseJson.message).to.equals('Log in Successful');\r",
+									"    pm.expect(responseJson.token).to.be.an('string');\r",
+									"});\r",
+									"\r",
+									"pm.test('response body data should contain token', () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    const { data } = responseJson;\r",
+									"    pm.expect(responseJson.data).to.be.equal(data)\r",
+									"    pm.expect(data).to.not.equals('');\r",
+									"});\r",
+									"\r",
+									"const jsonData = JSON.parse(responseBody);\r",
+									"pm.environment.set(\"token\", jsonData.token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"perserta@gmail.com\",\r\n    \"password\": \"peserta\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/login",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "LOGIN with correct password Copy",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"perserta@gmail.com\",\r\n    \"password\": \"peserta\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "339"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"153-hcES85qesaSnZhXl5dXYXEvhlCY\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 11 Dec 2023 10:11:25 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": \"200\",\n    \"status\": \"OK\",\n    \"message\": \"Log in Successful\",\n    \"data\": {\n        \"email\": \"perserta@gmail.com\",\n        \"name\": \"Fulan\"\n    },\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsImVtYWlsIjoicGVyc2VydGFAZ21haWwuY29tIiwiZW50cnlUaW1lIjoiMjAyMzEyMTEtMTY1MDM2IiwiaWF0IjoxNzAyMjg5NDg1LCJleHAiOjE3MDIzMDAyODV9.n9gNnyY7mQptMOTMAiN66LziiBFYqhiOZ9bMDHNCBXM\"\n}"
+						}
+					]
+				}
+			],
+			"description": "Folder Testing Authentication/Authorization endpoint"
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "ALL data USERS",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('status code should be 200', () => {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test('response header Content-Type should be application/json', () => {\r",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.equals('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"pm.test('response body should be an object', () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson).to.be.an('object');\r",
+									"});\r",
+									"\r",
+									"pm.test('response body should have correct property and value', () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseJson).to.haveOwnProperty('code');\r",
+									"    pm.expect(responseJson).to.haveOwnProperty('status');\r",
+									"    pm.expect(responseJson).to.haveOwnProperty('message');\r",
+									"    pm.expect(responseJson).to.haveOwnProperty('data');\r",
+									"\r",
+									"    pm.expect(responseJson.code).to.equals('200');\r",
+									"    pm.expect(responseJson.status).to.equals('OK');\r",
+									"    pm.expect(responseJson.message).to.equals('Response Success');\r",
+									"    pm.expect(responseJson.data).to.be.a('array');\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{domain}}/users",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "ALL data USERS",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsImVtYWlsIjoicGVyc2VydGFAZ21haWwuY29tIiwiZW50cnlUaW1lIjoiMjAyMzEyMDctMDYwMzIwIiwiaWF0IjoxNzAxOTA0MDc4fQ.lkIfugNNd0uuEk84VNSBhbYtF3jy8xbWVGldkDKDyC8",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:5000/users",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"users"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1302"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"516-jTvFlI7PLSGk0MBuufA6R4p4OzM\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 11 Dec 2023 10:12:08 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": \"200\",\n    \"status\": \"OK\",\n    \"message\": \"Response Success\",\n    \"data\": [\n        {\n            \"email\": \"perserta@gmail.com\",\n            \"name\": \"Fulan\",\n            \"job\": \"Programmer\",\n            \"address\": \"Indonesia\",\n            \"phone\": \"628987654321\",\n            \"img\": \"https://storage.googleapis.com/coffee-git-bucket/cGVyc2VydGFAZ21haWwuY29t/20231211-163353-14\"\n        },\n        {\n            \"email\": \"peserta@gmail.com\",\n            \"name\": \"\",\n            \"job\": \"-\",\n            \"address\": \"-\",\n            \"phone\": \"628\",\n            \"img\": \"\"\n        },\n        {\n            \"email\": \"theflashyellow45@gmail.com\",\n            \"name\": \"theflashyellow45\",\n            \"job\": \"-\",\n            \"address\": \"-\",\n            \"phone\": \"628\",\n            \"img\": \"\"\n        },\n        {\n            \"email\": \"kasir3.cqejambi@gmail.com\",\n            \"name\": \"Kasir CQE\",\n            \"job\": \"-\",\n            \"address\": \"-\",\n            \"phone\": \"628\",\n            \"img\": \"https://lh3.googleusercontent.com/a/ACg8ocJ6Eg3er9_KeL6zveCHfu1J6BZRb4RRlJ3eDVSNkFmo=s96-c\"\n        },\n        {\n            \"email\": \"fajrijambi557@gmail.com\",\n            \"name\": \"Aji Akamsi\",\n            \"job\": \"Programmer\",\n            \"address\": \"Padang\",\n            \"phone\": \"628123123123\",\n            \"img\": \"https://storage.googleapis.com/uploadcoffee/ZmFqcmlqYW1iaTU1N0BnbWFpbC5jb20=/20231209-222331-41\"\n        },\n        {\n            \"email\": \"fajri42vandi@gmail.com\",\n            \"name\": \"Fajri Arvandi\",\n            \"job\": \"-\",\n            \"address\": \"-\",\n            \"phone\": \"628\",\n            \"img\": \"https://lh3.googleusercontent.com/a/ACg8ocLC5cUa0uMMGRFqneU-igLrTsPJSZDmp5fJ70UOCVaOFQ=s96-c\"\n        },\n        {\n            \"email\": \"c614bsy3787@bangkit.academy\",\n            \"name\": \"Fajri Arvandi C614BSY3787\",\n            \"job\": \"-\",\n            \"address\": \"-\",\n            \"phone\": \"628\",\n            \"img\": \"https://lh3.googleusercontent.com/a/ACg8ocKtoJYxR-IUIV8xpwzVDkp997HCbQ5PHGHGrgezs7dHKQ=s96-c\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "One USER",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('status code should be 200', () => {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test('response header Content-Type should be application/json', () => {\r",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.equals('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"pm.test('response body should be an object', () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson).to.be.an('object');\r",
+									"});\r",
+									"\r",
+									"pm.test('response body should have correct property and value', () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseJson).to.haveOwnProperty('code');\r",
+									"    pm.expect(responseJson).to.haveOwnProperty('status');\r",
+									"    pm.expect(responseJson).to.haveOwnProperty('message');\r",
+									"    pm.expect(responseJson).to.haveOwnProperty('data');\r",
+									"\r",
+									"    pm.expect(responseJson.code).to.equals('200');\r",
+									"    pm.expect(responseJson.status).to.equals('OK');\r",
+									"    pm.expect(responseJson.message).to.equals('Response Success');\r",
+									"    pm.expect(responseJson.data).to.be.a('object');\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{domain}}/users/one",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"users",
+								"one"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "ALL data USERS Copy",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsImVtYWlsIjoicGVyc2VydGFAZ21haWwuY29tIiwiZW50cnlUaW1lIjoiMjAyMzEyMDctMDYwMzIwIiwiaWF0IjoxNzAxOTA0MDc4fQ.lkIfugNNd0uuEk84VNSBhbYtF3jy8xbWVGldkDKDyC8",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:5000/users/one",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"users",
+										"one"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "446"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1be-UvfNRvY6z9Px5rTQe9sfhbzMZ+Q\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 11 Dec 2023 16:53:39 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": \"200\",\n    \"status\": \"OK\",\n    \"message\": \"Response Success\",\n    \"data\": {\n        \"id\": 10,\n        \"email\": \"perserta@gmail.com\",\n        \"password\": \"$2a$11$ySa4aVnPg/icY/AohDZSHe.fvi6Jwq0Gkyki.O9I5Uml.vBUKwdLS\",\n        \"name\": \"Fulan\",\n        \"job\": \"Programmer\",\n        \"address\": \"Indonesia\",\n        \"phone\": \"628987654321\",\n        \"img\": \"https://storage.googleapis.com/coffee-git-bucket/cGVyc2VydGFAZ21haWwuY29t/20231211-171230-31\",\n        \"verify\": 1,\n        \"create_at\": \"2023-12-01T15:32:37.000Z\",\n        \"timestamp\": \"2023-12-11T10:12:31.000Z\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "EDIT User Profiles",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('status code should be 201', () => {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"pm.test('response header Content-Type should be application/json', () => {\r",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.equals('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"pm.test('response body should be an object', () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson).to.be.an('object');\r",
+									"});\r",
+									"\r",
+									"pm.test('response body should have correct property and value', () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseJson).to.haveOwnProperty('code');\r",
+									"    pm.expect(responseJson).to.haveOwnProperty('status');\r",
+									"    pm.expect(responseJson).to.haveOwnProperty('message');\r",
+									"\r",
+									"    pm.expect(responseJson.code).to.equals('201');\r",
+									"    pm.expect(responseJson.status).to.equals('Created');\r",
+									"    pm.expect(responseJson.message).to.equals('Update profile successfully');\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Fulan",
+									"type": "text"
+								},
+								{
+									"key": "job",
+									"value": "Programmer",
+									"type": "text"
+								},
+								{
+									"key": "address",
+									"value": "Indonesia",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "628987654321",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/urang/Pictures/acebadge.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{domain}}/users",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "EDIT User Profiles",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsImVtYWlsIjoicGVyc2VydGFAZ21haWwuY29tIiwiZW50cnlUaW1lIjoiMjAyMzEyMDctMDYwMzIwIiwiaWF0IjoxNzAxOTA0MDc4fQ.lkIfugNNd0uuEk84VNSBhbYtF3jy8xbWVGldkDKDyC8",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "Fulan",
+											"type": "text"
+										},
+										{
+											"key": "job",
+											"value": "Programmer",
+											"type": "text"
+										},
+										{
+											"key": "address",
+											"value": "Indonesia",
+											"type": "text"
+										},
+										{
+											"key": "phone",
+											"value": "628987654321",
+											"type": "text"
+										},
+										{
+											"key": "image",
+											"type": "file",
+											"src": "/C:/Users/urang/Pictures/acebadge.png"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:5000/users",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"users"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "73"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"49-gIufsRBSbirV9CChysfQ63rHVXE\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 11 Dec 2023 10:12:31 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": \"201\",\n    \"status\": \"Created\",\n    \"message\": \"Update profile successfully\"\n}"
+						}
+					]
+				}
+			],
+			"description": "Folder Testing User Profile endpoint"
+		},
+		{
+			"name": "Predict",
+			"item": [
+				{
+					"name": "History Predict User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('status code should be 200', () => {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test('response header Content-Type should be application/json', () => {\r",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.equals('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"pm.test('response body should be an object', () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson).to.be.an('object');\r",
+									"});\r",
+									"\r",
+									"pm.test('response body should have correct property and value', () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseJson).to.haveOwnProperty('code');\r",
+									"    pm.expect(responseJson).to.haveOwnProperty('status');\r",
+									"    pm.expect(responseJson).to.haveOwnProperty('message');\r",
+									"    pm.expect(responseJson).to.haveOwnProperty('data');\r",
+									"\r",
+									"    pm.expect(responseJson.code).to.equals('200');\r",
+									"    pm.expect(responseJson.status).to.equals('OK');\r",
+									"    pm.expect(responseJson.message).to.equals('Response Success');\r",
+									"    pm.expect(responseJson.data).to.be.a('array');\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/predict",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"predict"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "History Predict User",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/predict",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"predict"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1991"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"7c7-/5Bb7kISRgY9GRUy0DVeYNayDdE\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 11 Dec 2023 10:12:54 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": \"200\",\n    \"status\": \"OK\",\n    \"message\": \"Response Success\",\n    \"data\": [\n        {\n            \"id\": 1,\n            \"id_user\": 10,\n            \"img\": \"test-check.jpg\",\n            \"info\": \"Good\",\n            \"timestamp\": \"2023-12-07T04:29:23.000Z\"\n        },\n        {\n            \"id\": 3,\n            \"id_user\": 10,\n            \"img\": \"https://storage.googleapis.com/coffee-git-bucket/cGVyc2VydGFAZ21haWwuY29t/20231211-081813-53\",\n            \"info\": \"Black_Soil\",\n            \"timestamp\": \"2023-12-11T01:18:15.000Z\"\n        },\n        {\n            \"id\": 4,\n            \"id_user\": 10,\n            \"img\": \"https://storage.googleapis.com/coffee-git-bucket/cGVyc2VydGFAZ21haWwuY29t/20231211-082020-66\",\n            \"info\": \"Yellow_Soil\",\n            \"timestamp\": \"2023-12-11T01:20:22.000Z\"\n        },\n        {\n            \"id\": 5,\n            \"id_user\": 10,\n            \"img\": \"https://storage.googleapis.com/coffee-git-bucket/cGVyc2VydGFAZ21haWwuY29t/20231211-082647-34\",\n            \"info\": \"Yellow_Soil\",\n            \"timestamp\": \"2023-12-11T01:26:48.000Z\"\n        },\n        {\n            \"id\": 6,\n            \"id_user\": 10,\n            \"img\": \"https://storage.googleapis.com/coffee-git-bucket/cGVyc2VydGFAZ21haWwuY29t/20231211-082948-97\",\n            \"info\": \"Yellow_Soil\",\n            \"timestamp\": \"2023-12-11T01:29:49.000Z\"\n        },\n        {\n            \"id\": 7,\n            \"id_user\": 10,\n            \"img\": \"https://storage.googleapis.com/coffee-git-bucket/cGVyc2VydGFAZ21haWwuY29t/20231211-083045-77\",\n            \"info\": \"Yellow_Soil\",\n            \"timestamp\": \"2023-12-11T01:30:46.000Z\"\n        },\n        {\n            \"id\": 8,\n            \"id_user\": 10,\n            \"img\": \"https://storage.googleapis.com/coffee-git-bucket/cGVyc2VydGFAZ21haWwuY29t/20231211-083105-96\",\n            \"info\": \"Yellow_Soil\",\n            \"timestamp\": \"2023-12-11T01:31:06.000Z\"\n        },\n        {\n            \"id\": 9,\n            \"id_user\": 10,\n            \"img\": \"https://storage.googleapis.com/coffee-git-bucket/cGVyc2VydGFAZ21haWwuY29t/20231211-100721-36\",\n            \"info\": \"Yellow_Soil\",\n            \"timestamp\": \"2023-12-11T03:07:23.000Z\"\n        },\n        {\n            \"id\": 10,\n            \"id_user\": 10,\n            \"img\": \"https://storage.googleapis.com/coffee-git-bucket/cGVyc2VydGFAZ21haWwuY29t/20231211-125454-46\",\n            \"info\": \"Black_Soil\",\n            \"timestamp\": \"2023-12-11T05:54:55.000Z\"\n        },\n        {\n            \"id\": 11,\n            \"id_user\": 10,\n            \"img\": \"https://storage.googleapis.com/coffee-git-bucket/cGVyc2VydGFAZ21haWwuY29t/20231211-150419-6\",\n            \"info\": \"Black_Soil\",\n            \"timestamp\": \"2023-12-11T08:04:22.000Z\"\n        },\n        {\n            \"id\": 12,\n            \"id_user\": 10,\n            \"img\": \"https://storage.googleapis.com/coffee-git-bucket/cGVyc2VydGFAZ21haWwuY29t/20231211-164023-2\",\n            \"info\": \"Black_Soil\",\n            \"timestamp\": \"2023-12-11T09:40:26.000Z\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Predict Image but Image not Exist",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('status code should be 400', () => {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test('response header Content-Type should be application/json', () => {\r",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.equals('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"pm.test('response body should be an object', () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson).to.be.an('object');\r",
+									"});\r",
+									"\r",
+									"pm.test('response body should have correct property and value', () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseJson).to.haveOwnProperty('code');\r",
+									"    pm.expect(responseJson).to.haveOwnProperty('status');\r",
+									"    pm.expect(responseJson).to.haveOwnProperty('message');\r",
+									"\r",
+									"    pm.expect(responseJson.code).to.equals('400');\r",
+									"    pm.expect(responseJson.status).to.equals('Bad Request');\r",
+									"    pm.expect(responseJson.message).to.equals('Image is not Exist');\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTcsImVtYWlsIjoiZmFqcmlqYW1iaTU1N0BnbWFpbC5jb20iLCJlbnRyeVRpbWUiOiIyMDIzMTIwOS0yMTIzMjIiLCJpYXQiOjE3MDIxMzE4MDgsImV4cCI6MTcwMjE0MjYwOH0.MjeEcI07CruUTMAxnNfkGUhquliIjyKaRxTV36hs_v8",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": []
+								}
+							]
+						},
+						"url": {
+							"raw": "{{domain}}/predict",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"predict"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Predict Image but Image not Exist",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTcsImVtYWlsIjoiZmFqcmlqYW1iaTU1N0BnbWFpbC5jb20iLCJlbnRyeVRpbWUiOiIyMDIzMTIwOS0yMTIzMjIiLCJpYXQiOjE3MDIxMzE4MDgsImV4cCI6MTcwMjE0MjYwOH0.MjeEcI07CruUTMAxnNfkGUhquliIjyKaRxTV36hs_v8",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "image",
+											"type": "file",
+											"src": []
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:5000/predict",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"predict"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "68"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"44-+FBHkXM9QCEBCIOec0pQE+sHPLc\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 11 Dec 2023 10:13:09 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": \"400\",\n    \"status\": \"Bad Request\",\n    \"message\": \"Image is not Exist\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Predict Image",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('status code should be 200', () => {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test('response header Content-Type should be application/json', () => {\r",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.equals('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"pm.test('response body should be an object', () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson).to.be.an('object');\r",
+									"});\r",
+									"\r",
+									"pm.test('response body should have correct property and value', () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseJson).to.haveOwnProperty('code');\r",
+									"    pm.expect(responseJson).to.haveOwnProperty('status');\r",
+									"    pm.expect(responseJson).to.haveOwnProperty('message');\r",
+									"    pm.expect(responseJson).to.haveOwnProperty('data');\r",
+									"\r",
+									"    pm.expect(responseJson.code).to.equals('200');\r",
+									"    pm.expect(responseJson.status).to.equals('OK');\r",
+									"    pm.expect(responseJson.message).to.equals('Response Success');\r",
+									"    pm.expect(responseJson.data).to.be.a('object');\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTcsImVtYWlsIjoiZmFqcmlqYW1iaTU1N0BnbWFpbC5jb20iLCJlbnRyeVRpbWUiOiIyMDIzMTIwOS0yMTIzMjIiLCJpYXQiOjE3MDIxMzE4MDgsImV4cCI6MTcwMjE0MjYwOH0.MjeEcI07CruUTMAxnNfkGUhquliIjyKaRxTV36hs_v8",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/urang/Documents/My_Data/Development/demo-capstone-ML-3-main/static/uploads/0.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{domain}}/predict",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"predict"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Predict Image",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTcsImVtYWlsIjoiZmFqcmlqYW1iaTU1N0BnbWFpbC5jb20iLCJlbnRyeVRpbWUiOiIyMDIzMTIwOS0yMTIzMjIiLCJpYXQiOjE3MDIxMzE4MDgsImV4cCI6MTcwMjE0MjYwOH0.MjeEcI07CruUTMAxnNfkGUhquliIjyKaRxTV36hs_v8",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "image",
+											"type": "file",
+											"src": "/C:/Users/urang/Documents/My_Data/Development/demo-capstone-ML-3-main/static/uploads/0.jpg"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:5000/predict",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"predict"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "135"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"87-bX7TSPVEnV3YqxNNrg8RiavXPHA\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 11 Dec 2023 10:13:18 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": \"200\",\n    \"status\": \"OK\",\n    \"message\": \"Response Success\",\n    \"data\": {\n        \"confidence\": 0.7442983388900757,\n        \"soil_types_prediction\": \"Black_Soil\"\n    }\n}"
+						}
+					]
+				}
+			],
+			"description": "Folder Testing Prediction Machine Learning Model endpoint"
+		},
+		{
+			"name": "Community",
+			"item": [
+				{
+					"name": "Posting",
+					"item": [
+						{
+							"name": "GET all Postings",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test('status code should be 200', () => {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test('response header Content-Type should be application/json', () => {\r",
+											"    pm.expect(pm.response.headers.get('Content-Type')).to.equals('application/json; charset=utf-8');\r",
+											"});\r",
+											"\r",
+											"pm.test('response body should be an object', () => {\r",
+											"    const responseJson = pm.response.json();\r",
+											"    pm.expect(responseJson).to.be.an('object');\r",
+											"});\r",
+											"\r",
+											"pm.test('response body should have correct property and value', () => {\r",
+											"    const responseJson = pm.response.json();\r",
+											"    \r",
+											"    pm.expect(responseJson).to.haveOwnProperty('code');\r",
+											"    pm.expect(responseJson).to.haveOwnProperty('status');\r",
+											"    pm.expect(responseJson).to.haveOwnProperty('message');\r",
+											"    pm.expect(responseJson).to.haveOwnProperty('data');\r",
+											"\r",
+											"    pm.expect(responseJson.code).to.equals('200');\r",
+											"    pm.expect(responseJson.status).to.equals('OK');\r",
+											"    pm.expect(responseJson.message).to.equals('Response Success');\r",
+											"    pm.expect(responseJson.data).to.be.a('array');\r",
+											"});\r",
+											"\r",
+											"const jsonData = JSON.parse(responseBody);\r",
+											"pm.environment.set(\"id-post\", jsonData.data[0].id_posting);\r",
+											"pm.environment.set(\"id-post-2\", jsonData.data[1].id_posting);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{domain}}/posting",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"posting"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "GET all Postings",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:5000/posting",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "5000",
+											"path": [
+												"posting"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "664"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"298-8XytNkMoJrRxMpSq8R2P3Rvr2Os\""
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 11 Dec 2023 12:14:44 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"code\": \"200\",\n    \"status\": \"OK\",\n    \"message\": \"Response Success\",\n    \"data\": [\n        {\n            \"id_posting\": \"8690cedf-2558-490a-a22f-e10811879e0d\",\n            \"id_user\": 10,\n            \"name\": \"Fulan\",\n            \"caption\": \"Postingan kesebelas pake uuid\",\n            \"img\": \"https://storage.googleapis.com/coffee-git-bucket/cGVyc2VydGFAZ21haWwuY29t/20231211-171512-85\",\n            \"create_at\": \"2023-12-11T10:15:12.000Z\",\n            \"timestamp\": \"2023-12-11T10:15:12.000Z\"\n        },\n        {\n            \"id_posting\": \"777e1804-d5b1-4d36-a5f0-5b51746f826d\",\n            \"id_user\": 10,\n            \"name\": \"Fulan\",\n            \"caption\": \"Postingan keenam pake uuid\",\n            \"img\": \"https://storage.googleapis.com/uploadcoffee/cGVyc2VydGFAZ21haWwuY29t/20231210-162327-48\",\n            \"create_at\": \"2023-12-10T09:23:31.000Z\",\n            \"timestamp\": \"2023-12-10T09:23:31.000Z\"\n        }\n    ]\n}"
+								}
+							]
+						},
+						{
+							"name": "GET all Posting by User",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test('status code should be 200', () => {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test('response header Content-Type should be application/json', () => {\r",
+											"    pm.expect(pm.response.headers.get('Content-Type')).to.equals('application/json; charset=utf-8');\r",
+											"});\r",
+											"\r",
+											"pm.test('response body should be an object', () => {\r",
+											"    const responseJson = pm.response.json();\r",
+											"    pm.expect(responseJson).to.be.an('object');\r",
+											"});\r",
+											"\r",
+											"pm.test('response body should have correct property and value', () => {\r",
+											"    const responseJson = pm.response.json();\r",
+											"    \r",
+											"    pm.expect(responseJson).to.haveOwnProperty('code');\r",
+											"    pm.expect(responseJson).to.haveOwnProperty('status');\r",
+											"    pm.expect(responseJson).to.haveOwnProperty('message');\r",
+											"    pm.expect(responseJson).to.haveOwnProperty('data');\r",
+											"\r",
+											"    pm.expect(responseJson.code).to.equals('200');\r",
+											"    pm.expect(responseJson.status).to.equals('OK');\r",
+											"    pm.expect(responseJson.message).to.equals('Response Success');\r",
+											"    pm.expect(responseJson.data).to.be.a('array');\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{domain}}/posting/user",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"posting",
+										"user"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "GET all Posting by User",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:5000/posting/user",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "5000",
+											"path": [
+												"posting",
+												"user"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "664"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"298-8XytNkMoJrRxMpSq8R2P3Rvr2Os\""
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 11 Dec 2023 12:17:24 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"code\": \"200\",\n    \"status\": \"OK\",\n    \"message\": \"Response Success\",\n    \"data\": [\n        {\n            \"id_posting\": \"8690cedf-2558-490a-a22f-e10811879e0d\",\n            \"id_user\": 10,\n            \"name\": \"Fulan\",\n            \"caption\": \"Postingan kesebelas pake uuid\",\n            \"img\": \"https://storage.googleapis.com/coffee-git-bucket/cGVyc2VydGFAZ21haWwuY29t/20231211-171512-85\",\n            \"create_at\": \"2023-12-11T10:15:12.000Z\",\n            \"timestamp\": \"2023-12-11T10:15:12.000Z\"\n        },\n        {\n            \"id_posting\": \"777e1804-d5b1-4d36-a5f0-5b51746f826d\",\n            \"id_user\": 10,\n            \"name\": \"Fulan\",\n            \"caption\": \"Postingan keenam pake uuid\",\n            \"img\": \"https://storage.googleapis.com/uploadcoffee/cGVyc2VydGFAZ21haWwuY29t/20231210-162327-48\",\n            \"create_at\": \"2023-12-10T09:23:31.000Z\",\n            \"timestamp\": \"2023-12-10T09:23:31.000Z\"\n        }\n    ]\n}"
+								}
+							]
+						},
+						{
+							"name": "GET One Posting User",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test('status code should be 200', () => {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test('response header Content-Type should be application/json', () => {\r",
+											"    pm.expect(pm.response.headers.get('Content-Type')).to.equals('application/json; charset=utf-8');\r",
+											"});\r",
+											"\r",
+											"pm.test('response body should be an object', () => {\r",
+											"    const responseJson = pm.response.json();\r",
+											"    pm.expect(responseJson).to.be.an('object');\r",
+											"});\r",
+											"\r",
+											"pm.test('response body should have correct property and value', () => {\r",
+											"    const responseJson = pm.response.json();\r",
+											"    \r",
+											"    pm.expect(responseJson).to.haveOwnProperty('code');\r",
+											"    pm.expect(responseJson).to.haveOwnProperty('status');\r",
+											"    pm.expect(responseJson).to.haveOwnProperty('message');\r",
+											"    pm.expect(responseJson).to.haveOwnProperty('data');\r",
+											"\r",
+											"    pm.expect(responseJson.code).to.equals('200');\r",
+											"    pm.expect(responseJson.status).to.equals('OK');\r",
+											"    pm.expect(responseJson.message).to.equals('Response Success');\r",
+											"    pm.expect(responseJson.data).to.be.a('object');\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{domain}}/posting/{{id-post-2}}",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"posting",
+										"{{id-post-2}}"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "GET One Posting User",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:5000/posting/",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "5000",
+											"path": [
+												"posting",
+												""
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "359"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"167-I/fbC/wckqdDbnanKyQItDdjLkY\""
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 11 Dec 2023 15:39:29 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"code\": \"200\",\n    \"status\": \"OK\",\n    \"message\": \"Response Success\",\n    \"data\": {\n        \"id_posting\": \"777e1804-d5b1-4d36-a5f0-5b51746f826d\",\n        \"id_user\": 10,\n        \"name\": \"Fulan\",\n        \"caption\": \"Postingan keenam pake uuid\",\n        \"img\": \"https://storage.googleapis.com/uploadcoffee/cGVyc2VydGFAZ21haWwuY29t/20231210-162327-48\",\n        \"create_at\": \"2023-12-10T09:23:31.000Z\",\n        \"timestamp\": \"2023-12-10T09:23:31.000Z\"\n    }\n}"
+								}
+							]
+						},
+						{
+							"name": "ADD Posting FAIL because caption is not exist",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test('status code should be 400', () => {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"\r",
+											"pm.test('response header Content-Type should be application/json', () => {\r",
+											"    pm.expect(pm.response.headers.get('Content-Type')).to.equals('application/json; charset=utf-8');\r",
+											"});\r",
+											"\r",
+											"pm.test('response body should be an object', () => {\r",
+											"    const responseJson = pm.response.json();\r",
+											"    pm.expect(responseJson).to.be.an('object');\r",
+											"});\r",
+											"\r",
+											"pm.test('response body should have correct property and value', () => {\r",
+											"    const responseJson = pm.response.json();\r",
+											"    \r",
+											"    pm.expect(responseJson).to.haveOwnProperty('code');\r",
+											"    pm.expect(responseJson).to.haveOwnProperty('status');\r",
+											"    pm.expect(responseJson).to.haveOwnProperty('message');\r",
+											"\r",
+											"    pm.expect(responseJson.code).to.equals('400');\r",
+											"    pm.expect(responseJson.status).to.equals('Bad Request');\r",
+											"    pm.expect(responseJson.message).to.equals('Please type the caption or description of your post');\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "caption",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "image",
+											"type": "file",
+											"src": "/C:/Users/urang/Pictures/26-1.png"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{domain}}/posting/",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"posting",
+										""
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "ADD Posting FAIL because caption is not exist",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "caption",
+													"value": "",
+													"type": "text"
+												},
+												{
+													"key": "image",
+													"type": "file",
+													"src": "/C:/Users/urang/Pictures/26-1.png"
+												}
+											]
+										},
+										"url": {
+											"raw": "http://localhost:5000/posting/",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "5000",
+											"path": [
+												"posting",
+												""
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "101"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"65-yzhzrJU9risWk7ZkmHzv2XqhmNI\""
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 11 Dec 2023 10:14:26 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"code\": \"400\",\n    \"status\": \"Bad Request\",\n    \"message\": \"Please type the caption or description of your post\"\n}"
+								}
+							]
+						},
+						{
+							"name": "ADD Posting FAIL because image is not exist",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test('status code should be 400', () => {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"\r",
+											"pm.test('response header Content-Type should be application/json', () => {\r",
+											"    pm.expect(pm.response.headers.get('Content-Type')).to.equals('application/json; charset=utf-8');\r",
+											"});\r",
+											"\r",
+											"pm.test('response body should be an object', () => {\r",
+											"    const responseJson = pm.response.json();\r",
+											"    pm.expect(responseJson).to.be.an('object');\r",
+											"});\r",
+											"\r",
+											"pm.test('response body should have correct property and value', () => {\r",
+											"    const responseJson = pm.response.json();\r",
+											"    \r",
+											"    pm.expect(responseJson).to.haveOwnProperty('code');\r",
+											"    pm.expect(responseJson).to.haveOwnProperty('status');\r",
+											"    pm.expect(responseJson).to.haveOwnProperty('message');\r",
+											"\r",
+											"    pm.expect(responseJson.code).to.equals('400');\r",
+											"    pm.expect(responseJson.status).to.equals('Bad Request');\r",
+											"    pm.expect(responseJson.message).to.equals('Image not Exist');\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "caption",
+											"value": "Postingan ketujuh pake uuid",
+											"type": "text"
+										},
+										{
+											"key": "image",
+											"type": "file",
+											"src": []
+										}
+									]
+								},
+								"url": {
+									"raw": "{{domain}}/posting/",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"posting",
+										""
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "ADD Posting FAIL because image is not exist",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "caption",
+													"value": "Postingan ketujuh pake uuid",
+													"type": "text"
+												},
+												{
+													"key": "image",
+													"type": "file",
+													"src": []
+												}
+											]
+										},
+										"url": {
+											"raw": "http://localhost:5000/posting/",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "5000",
+											"path": [
+												"posting",
+												""
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "65"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"41-8IGJeca6dkEiNk+PCIjQ5n+ve7Y\""
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 11 Dec 2023 10:14:35 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"code\": \"400\",\n    \"status\": \"Bad Request\",\n    \"message\": \"Image not Exist\"\n}"
+								}
+							]
+						},
+						{
+							"name": "ADD Posting FAIL with invalid Image file size",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test('status code should be 400', () => {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"\r",
+											"pm.test('response header Content-Type should be application/json', () => {\r",
+											"    pm.expect(pm.response.headers.get('Content-Type')).to.equals('application/json; charset=utf-8');\r",
+											"});\r",
+											"\r",
+											"pm.test('response body should be an object', () => {\r",
+											"    const responseJson = pm.response.json();\r",
+											"    pm.expect(responseJson).to.be.an('object');\r",
+											"});\r",
+											"\r",
+											"pm.test('response body should have correct property and value', () => {\r",
+											"    const responseJson = pm.response.json();\r",
+											"    \r",
+											"    pm.expect(responseJson).to.haveOwnProperty('code');\r",
+											"    pm.expect(responseJson).to.haveOwnProperty('status');\r",
+											"    pm.expect(responseJson).to.haveOwnProperty('message');\r",
+											"\r",
+											"    pm.expect(responseJson.code).to.equals('400');\r",
+											"    pm.expect(responseJson.status).to.equals('Bad Request');\r",
+											"    pm.expect(responseJson.message).to.equals('File too large');\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "caption",
+											"value": "Postingan ketujuh pake uuid",
+											"type": "text"
+										},
+										{
+											"key": "image",
+											"type": "file",
+											"src": "/C:/Users/urang/Pictures/My Picture/anime/attack on titan.png"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{domain}}/posting/",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"posting",
+										""
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "ADD Posting FAIL with invalid Image file size",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "caption",
+													"value": "Postingan ketujuh pake uuid",
+													"type": "text"
+												},
+												{
+													"key": "image",
+													"type": "file",
+													"src": "/C:/Users/urang/Pictures/My Picture/anime/attack on titan.png"
+												}
+											]
+										},
+										"url": {
+											"raw": "http://localhost:5000/posting/",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "5000",
+											"path": [
+												"posting",
+												""
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "64"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"40-1t9R95OUsVBfgQdR7c83SkYxHnA\""
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 11 Dec 2023 10:14:49 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"code\": \"400\",\n    \"status\": \"Bad Request\",\n    \"message\": \"File too large\"\n}"
+								}
+							]
+						},
+						{
+							"name": "ADD Posting FAIL with invalid Image file type",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test('status code should be 400', () => {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"\r",
+											"pm.test('response header Content-Type should be application/json', () => {\r",
+											"    pm.expect(pm.response.headers.get('Content-Type')).to.equals('application/json; charset=utf-8');\r",
+											"});\r",
+											"\r",
+											"pm.test('response body should be an object', () => {\r",
+											"    const responseJson = pm.response.json();\r",
+											"    pm.expect(responseJson).to.be.an('object');\r",
+											"});\r",
+											"\r",
+											"pm.test('response body should have correct property and value', () => {\r",
+											"    const responseJson = pm.response.json();\r",
+											"    \r",
+											"    pm.expect(responseJson).to.haveOwnProperty('code');\r",
+											"    pm.expect(responseJson).to.haveOwnProperty('status');\r",
+											"    pm.expect(responseJson).to.haveOwnProperty('message');\r",
+											"\r",
+											"    pm.expect(responseJson.code).to.equals('400');\r",
+											"    pm.expect(responseJson.status).to.equals('Bad Request');\r",
+											"    pm.expect(responseJson.message).to.equals('Invalid file type. Only jpeg, jpg, and png are allowed.');\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "caption",
+											"value": "Postingan ketujuh pake uuid",
+											"type": "text"
+										},
+										{
+											"key": "image",
+											"type": "file",
+											"src": "/C:/Users/urang/Pictures/_231101150040-412.webp"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{domain}}/posting/",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"posting",
+										""
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "ADD Posting FAIL with invalid Image file type",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "caption",
+													"value": "Postingan ketujuh pake uuid",
+													"type": "text"
+												},
+												{
+													"key": "image",
+													"type": "file",
+													"src": "/C:/Users/urang/Pictures/_231101150040-412.webp"
+												}
+											]
+										},
+										"url": {
+											"raw": "http://localhost:5000/posting/",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "5000",
+											"path": [
+												"posting",
+												""
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "105"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"69-/SoHMysISsaIRudLRaMC59vyV8Y\""
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 11 Dec 2023 10:15:02 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"code\": \"400\",\n    \"status\": \"Bad Request\",\n    \"message\": \"Invalid file type. Only jpeg, jpg, and png are allowed.\"\n}"
+								}
+							]
+						},
+						{
+							"name": "ADD Posting",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test('status code should be 201', () => {\r",
+											"    pm.response.to.have.status(201);\r",
+											"});\r",
+											"\r",
+											"pm.test('response header Content-Type should be application/json', () => {\r",
+											"    pm.expect(pm.response.headers.get('Content-Type')).to.equals('application/json; charset=utf-8');\r",
+											"});\r",
+											"\r",
+											"pm.test('response body should be an object', () => {\r",
+											"    const responseJson = pm.response.json();\r",
+											"    pm.expect(responseJson).to.be.an('object');\r",
+											"});\r",
+											"\r",
+											"pm.test('response body should have correct property and value', () => {\r",
+											"    const responseJson = pm.response.json();\r",
+											"    \r",
+											"    pm.expect(responseJson).to.haveOwnProperty('code');\r",
+											"    pm.expect(responseJson).to.haveOwnProperty('status');\r",
+											"    pm.expect(responseJson).to.haveOwnProperty('message');\r",
+											"\r",
+											"    pm.expect(responseJson.code).to.equals('201');\r",
+											"    pm.expect(responseJson.status).to.equals('Created');\r",
+											"    pm.expect(responseJson.message).to.equals('Success add new posting');\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "caption",
+											"value": "Postingan kesebelas pake uuid",
+											"type": "text"
+										},
+										{
+											"key": "image",
+											"type": "file",
+											"src": "/C:/Users/urang/Pictures/26-1.png"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{domain}}/posting/",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"posting",
+										""
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "ADD Posting",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "caption",
+													"value": "Postingan kesebelas pake uuid",
+													"type": "text"
+												},
+												{
+													"key": "image",
+													"type": "file",
+													"src": "/C:/Users/urang/Pictures/26-1.png"
+												}
+											]
+										},
+										"url": {
+											"raw": "http://localhost:5000/posting/",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "5000",
+											"path": [
+												"posting",
+												""
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "69"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"45-ZCl/n05si6zWMUkpEYKm8OTtUuw\""
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 11 Dec 2023 10:15:12 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"code\": \"201\",\n    \"status\": \"Created\",\n    \"message\": \"Success add new posting\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Edit Posting",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test('status code should be 201', () => {\r",
+											"    pm.response.to.have.status(201);\r",
+											"});\r",
+											"\r",
+											"pm.test('response header Content-Type should be application/json', () => {\r",
+											"    pm.expect(pm.response.headers.get('Content-Type')).to.equals('application/json; charset=utf-8');\r",
+											"});\r",
+											"\r",
+											"pm.test('response body should be an object', () => {\r",
+											"    const responseJson = pm.response.json();\r",
+											"    pm.expect(responseJson).to.be.an('object');\r",
+											"});\r",
+											"\r",
+											"pm.test('response body should have correct property and value', () => {\r",
+											"    const responseJson = pm.response.json();\r",
+											"    \r",
+											"    pm.expect(responseJson).to.haveOwnProperty('code');\r",
+											"    pm.expect(responseJson).to.haveOwnProperty('status');\r",
+											"    pm.expect(responseJson).to.haveOwnProperty('message');\r",
+											"    \r",
+											"    pm.expect(responseJson.code).to.equals('201');\r",
+											"    pm.expect(responseJson.status).to.equals('Created');\r",
+											"    pm.expect(responseJson.message).to.equals('Success update the posting');\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "caption",
+											"value": "Edit postingan {{id-post}}",
+											"type": "text"
+										},
+										{
+											"key": "image",
+											"type": "file",
+											"src": []
+										}
+									]
+								},
+								"url": {
+									"raw": "{{domain}}/posting/{{id-post}}",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"posting",
+										"{{id-post}}"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Edit Posting",
+									"originalRequest": {
+										"method": "PATCH",
+										"header": [],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "caption",
+													"value": "Edit postingan ",
+													"type": "text"
+												},
+												{
+													"key": "image",
+													"type": "file",
+													"src": []
+												}
+											]
+										},
+										"url": {
+											"raw": "http://localhost:5000/posting/",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "5000",
+											"path": [
+												"posting",
+												""
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "72"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"48-k7I7tcX51h+B3w7k8M2Hr1JhCrw\""
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 11 Dec 2023 10:15:22 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"code\": \"201\",\n    \"status\": \"Created\",\n    \"message\": \"Success update the posting\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Delete Posting FAIL",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test('status code should be 400', () => {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"\r",
+											"pm.test('response header Content-Type should be application/json', () => {\r",
+											"    pm.expect(pm.response.headers.get('Content-Type')).to.equals('application/json; charset=utf-8');\r",
+											"});\r",
+											"\r",
+											"pm.test('response body should be an object', () => {\r",
+											"    const responseJson = pm.response.json();\r",
+											"    pm.expect(responseJson).to.be.an('object');\r",
+											"});\r",
+											"\r",
+											"pm.test('response body should have correct property and value', () => {\r",
+											"    const responseJson = pm.response.json();\r",
+											"    \r",
+											"    pm.expect(responseJson).to.haveOwnProperty('code');\r",
+											"    pm.expect(responseJson).to.haveOwnProperty('status');\r",
+											"    pm.expect(responseJson).to.haveOwnProperty('message');\r",
+											"\r",
+											"    pm.expect(responseJson.code).to.equals('400');\r",
+											"    pm.expect(responseJson.status).to.equals('Bad Request');\r",
+											"    pm.expect(responseJson.message).to.equals('Sorry, posting is not exist');\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{domain}}/posting/85b210a1-82a2-4832-9257-abf404ff1c47",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"posting",
+										"85b210a1-82a2-4832-9257-abf404ff1c47"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Delete Posting FAIL",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:5000/posting/85b210a1-82a2-4832-9257-abf404ff1c47",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "5000",
+											"path": [
+												"posting",
+												"85b210a1-82a2-4832-9257-abf404ff1c47"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "77"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"4d-IpPpHYvjXOoYSfTu8EIE0BabwU4\""
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 11 Dec 2023 10:15:31 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"code\": \"400\",\n    \"status\": \"Bad Request\",\n    \"message\": \"Sorry, posting is not exist\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Delete Posting",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test('status code should be 200', () => {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test('response header Content-Type should be application/json', () => {\r",
+											"    pm.expect(pm.response.headers.get('Content-Type')).to.equals('application/json; charset=utf-8');\r",
+											"});\r",
+											"\r",
+											"pm.test('response body should be an object', () => {\r",
+											"    const responseJson = pm.response.json();\r",
+											"    pm.expect(responseJson).to.be.an('object');\r",
+											"});\r",
+											"\r",
+											"pm.test('response body should have correct property and value', () => {\r",
+											"    const responseJson = pm.response.json();\r",
+											"    \r",
+											"    pm.expect(responseJson).to.haveOwnProperty('code');\r",
+											"    pm.expect(responseJson).to.haveOwnProperty('status');\r",
+											"    pm.expect(responseJson).to.haveOwnProperty('message');\r",
+											"\r",
+											"    pm.expect(responseJson.code).to.equals('200');\r",
+											"    pm.expect(responseJson.status).to.equals('OK');\r",
+											"    pm.expect(responseJson.message).to.equals('Success delete the posting');\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{domain}}/posting/{{id-post}}",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"posting",
+										"{{id-post}}"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Delete Posting",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:5000/posting/",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "5000",
+											"path": [
+												"posting",
+												""
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "67"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"43-o3NL6RJX56x+yxPqvYrH//EelkE\""
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 11 Dec 2023 10:15:46 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"code\": \"200\",\n    \"status\": \"OK\",\n    \"message\": \"Success delete the posting\"\n}"
+								}
+							]
+						}
+					],
+					"description": "Specially Post endpoint"
+				},
+				{
+					"name": "Comment",
+					"item": [
+						{
+							"name": "GET Comment by Posting",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test('status code should be 200', () => {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test('response header Content-Type should be application/json', () => {\r",
+											"    pm.expect(pm.response.headers.get('Content-Type')).to.equals('application/json; charset=utf-8');\r",
+											"});\r",
+											"\r",
+											"pm.test('response body should be an object', () => {\r",
+											"    const responseJson = pm.response.json();\r",
+											"    pm.expect(responseJson).to.be.an('object');\r",
+											"});\r",
+											"\r",
+											"pm.test('response body should have correct property and value', () => {\r",
+											"    const responseJson = pm.response.json();\r",
+											"    \r",
+											"    pm.expect(responseJson).to.haveOwnProperty('code');\r",
+											"    pm.expect(responseJson).to.haveOwnProperty('status');\r",
+											"    pm.expect(responseJson).to.haveOwnProperty('message');\r",
+											"    pm.expect(responseJson).to.haveOwnProperty('data');\r",
+											"\r",
+											"    pm.expect(responseJson.code).to.equals('200');\r",
+											"    pm.expect(responseJson.status).to.equals('OK');\r",
+											"    pm.expect(responseJson.message).to.equals('Response Success');\r",
+											"    pm.expect(responseJson.data).to.be.a('array');\r",
+											"});\r",
+											"\r",
+											"const jsonData = JSON.parse(responseBody);\r",
+											"pm.environment.set(\"id-comment\", jsonData.data[0].id_comment);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"text\": \"\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{domain}}/comment/{{id-post-2}}",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"comment",
+										"{{id-post-2}}"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "GET Comment by Posting",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"text\": \"\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:5000/comment/",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "5000",
+											"path": [
+												"comment",
+												""
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "701"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"2bd-l8T0L7NAyM7ci7ESlSsKltB6mMs\""
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 11 Dec 2023 12:09:02 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"code\": \"200\",\n    \"status\": \"OK\",\n    \"message\": \"Response Success\",\n    \"data\": [\n        {\n            \"id_comment\": \"0b4a43c2-1e68-4664-9f8f-fc13a32e2cfb\",\n            \"id_posting\": \"777e1804-d5b1-4d36-a5f0-5b51746f826d\",\n            \"id_user\": 10,\n            \"name\": \"Fulan\",\n            \"text\": \"Add comment for posting 777e1804-d5b1-4d36-a5f0-5b51746f826d\",\n            \"timestamp\": \"2023-12-11T10:16:36.000Z\"\n        },\n        {\n            \"id_comment\": \"a8b6839a-8d27-4b6b-8739-5728663fd65f\",\n            \"id_posting\": \"777e1804-d5b1-4d36-a5f0-5b51746f826d\",\n            \"id_user\": 10,\n            \"name\": \"Fulan\",\n            \"text\": \"Comment first\",\n            \"timestamp\": \"2023-12-10T14:11:53.000Z\"\n        },\n        {\n            \"id_comment\": \"b3ef625d-9a17-4268-b086-80ed3bf10b4f\",\n            \"id_posting\": \"777e1804-d5b1-4d36-a5f0-5b51746f826d\",\n            \"id_user\": 10,\n            \"name\": \"Fulan\",\n            \"text\": \"Comment first\",\n            \"timestamp\": \"2023-12-10T14:13:04.000Z\"\n        }\n    ]\n}"
+								}
+							]
+						},
+						{
+							"name": "ADD Comment FAIL because comment is not type",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test('status code should be 400', () => {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"\r",
+											"pm.test('response header Content-Type should be application/json', () => {\r",
+											"    pm.expect(pm.response.headers.get('Content-Type')).to.equals('application/json; charset=utf-8');\r",
+											"});\r",
+											"\r",
+											"pm.test('response body should be an object', () => {\r",
+											"    const responseJson = pm.response.json();\r",
+											"    pm.expect(responseJson).to.be.an('object');\r",
+											"});\r",
+											"\r",
+											"pm.test('response body should have correct property and value', () => {\r",
+											"    const responseJson = pm.response.json();\r",
+											"    \r",
+											"    pm.expect(responseJson).to.haveOwnProperty('code');\r",
+											"    pm.expect(responseJson).to.haveOwnProperty('status');\r",
+											"    pm.expect(responseJson).to.haveOwnProperty('message');\r",
+											"\r",
+											"    pm.expect(responseJson.code).to.equals('400');\r",
+											"    pm.expect(responseJson.status).to.equals('Bad Request');\r",
+											"    pm.expect(responseJson.message).to.equals('Please type your comment before sending');\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"text\": \"\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{domain}}/comment/{{id-post-2}}",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"comment",
+										"{{id-post-2}}"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "ADD Comment FAIL because comment is not type",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"text\": \"\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:5000/comment/",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "5000",
+											"path": [
+												"comment",
+												""
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "89"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"59-i9qK1ibxRHCfgeET2dvetvJaX6o\""
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 11 Dec 2023 10:16:21 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"code\": \"400\",\n    \"status\": \"Bad Request\",\n    \"message\": \"Please type your comment before sending\"\n}"
+								}
+							]
+						},
+						{
+							"name": "ADD Comment",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test('status code should be 200', () => {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test('response header Content-Type should be application/json', () => {\r",
+											"    pm.expect(pm.response.headers.get('Content-Type')).to.equals('application/json; charset=utf-8');\r",
+											"});\r",
+											"\r",
+											"pm.test('response body should be an object', () => {\r",
+											"    const responseJson = pm.response.json();\r",
+											"    pm.expect(responseJson).to.be.an('object');\r",
+											"});\r",
+											"\r",
+											"pm.test('response body should have correct property and value', () => {\r",
+											"    const responseJson = pm.response.json();\r",
+											"    \r",
+											"    pm.expect(responseJson).to.haveOwnProperty('code');\r",
+											"    pm.expect(responseJson).to.haveOwnProperty('status');\r",
+											"    pm.expect(responseJson).to.haveOwnProperty('message');\r",
+											"\r",
+											"    pm.expect(responseJson.code).to.equals('200');\r",
+											"    pm.expect(responseJson.status).to.equals('OK');\r",
+											"    pm.expect(responseJson.message).to.equals('Success give comment');\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"text\": \"Add comment for posting {{id-post-2}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{domain}}/comment/{{id-post-2}}",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"comment",
+										"{{id-post-2}}"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "ADD Comment",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"text\": \"Add comment for posting \"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:5000/comment/",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "5000",
+											"path": [
+												"comment",
+												""
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "61"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"3d-TYflQXW3qnQW1fIX7sLKq9bbF+s\""
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 11 Dec 2023 10:16:36 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"code\": \"200\",\n    \"status\": \"OK\",\n    \"message\": \"Success give comment\"\n}"
+								}
+							]
+						},
+						{
+							"name": "DELETE Comment FAIL because comment is not exist",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test('status code should be 400', () => {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"\r",
+											"pm.test('response header Content-Type should be application/json', () => {\r",
+											"    pm.expect(pm.response.headers.get('Content-Type')).to.equals('application/json; charset=utf-8');\r",
+											"});\r",
+											"\r",
+											"pm.test('response body should be an object', () => {\r",
+											"    const responseJson = pm.response.json();\r",
+											"    pm.expect(responseJson).to.be.an('object');\r",
+											"});\r",
+											"\r",
+											"pm.test('response body should have correct property and value', () => {\r",
+											"    const responseJson = pm.response.json();\r",
+											"    \r",
+											"    pm.expect(responseJson).to.haveOwnProperty('code');\r",
+											"    pm.expect(responseJson).to.haveOwnProperty('status');\r",
+											"    pm.expect(responseJson).to.haveOwnProperty('message');\r",
+											"\r",
+											"    pm.expect(responseJson.code).to.equals('400');\r",
+											"    pm.expect(responseJson.status).to.equals('Bad Request');\r",
+											"    pm.expect(responseJson.message).to.equals('Sorry comment is not exist');\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{domain}}/comment/{{id-comment}}e",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"comment",
+										"{{id-comment}}e"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "DELETE Comment FAIL because comment is not exist",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:5000/comment/e",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "5000",
+											"path": [
+												"comment",
+												"e"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "76"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"4c-IbR4EjPzdh7e4MvyWXaD2qp7zsY\""
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 11 Dec 2023 10:16:46 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"code\": \"400\",\n    \"status\": \"Bad Request\",\n    \"message\": \"Sorry comment is not exist\"\n}"
+								}
+							]
+						},
+						{
+							"name": "DELETE Comment",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test('status code should be 200', () => {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test('response header Content-Type should be application/json', () => {\r",
+											"    pm.expect(pm.response.headers.get('Content-Type')).to.equals('application/json; charset=utf-8');\r",
+											"});\r",
+											"\r",
+											"pm.test('response body should be an object', () => {\r",
+											"    const responseJson = pm.response.json();\r",
+											"    pm.expect(responseJson).to.be.an('object');\r",
+											"});\r",
+											"\r",
+											"pm.test('response body should have correct property and value', () => {\r",
+											"    const responseJson = pm.response.json();\r",
+											"    \r",
+											"    pm.expect(responseJson).to.haveOwnProperty('code');\r",
+											"    pm.expect(responseJson).to.haveOwnProperty('status');\r",
+											"    pm.expect(responseJson).to.haveOwnProperty('message');\r",
+											"\r",
+											"    pm.expect(responseJson.code).to.equals('200');\r",
+											"    pm.expect(responseJson.status).to.equals('OK');\r",
+											"    pm.expect(responseJson.message).to.equals('Success delete comment');\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{domain}}/comment/{{id-comment}}",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"comment",
+										"{{id-comment}}"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "DELETE Comment",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:5000/comment/",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "5000",
+											"path": [
+												"comment",
+												""
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "63"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"3f-pFtCVBz/UQzlQjfE7ETLUdvgv+4\""
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 11 Dec 2023 10:16:58 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"code\": \"200\",\n    \"status\": \"OK\",\n    \"message\": \"Success delete comment\"\n}"
+								}
+							]
+						}
+					],
+					"description": "Specially Testing Comment endpoint"
+				}
+			],
+			"description": "Folder Testing Community endpoint, namely Posting and Comment endpoint"
+		},
+		{
+			"name": "Chat",
+			"item": [
+				{
+					"name": "GET Chat User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('status code should be 200', () => {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test('response header Content-Type should be application/json', () => {\r",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.equals('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"pm.test('response body should be an object', () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson).to.be.an('object');\r",
+									"});\r",
+									"\r",
+									"pm.test('response body should have correct property and value', () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseJson).to.haveOwnProperty('code');\r",
+									"    pm.expect(responseJson).to.haveOwnProperty('status');\r",
+									"    pm.expect(responseJson).to.haveOwnProperty('message');\r",
+									"    pm.expect(responseJson).to.haveOwnProperty('data');\r",
+									"\r",
+									"    pm.expect(responseJson.code).to.equals('200');\r",
+									"    pm.expect(responseJson.status).to.equals('OK');\r",
+									"    pm.expect(responseJson.message).to.equals('Response Success');\r",
+									"    pm.expect(responseJson.data).to.be.a('array');\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}/chat/14",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"chat",
+								"14"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "GET Chat User",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5000/chat/14",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"chat",
+										"14"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "945"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3b1-xLnsTXrv8xW/OhhPkezIvu8glV8\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 11 Dec 2023 12:07:50 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": \"200\",\n    \"status\": \"OK\",\n    \"message\": \"Response Success\",\n    \"data\": [\n        {\n            \"id\": 1,\n            \"senderid\": 10,\n            \"sender\": \"Fulan\",\n            \"receiverid\": 14,\n            \"receiver\": \"Kasir CQE\",\n            \"message\": \"Hi 14\",\n            \"timestamp\": \"2023-12-10T11:03:42.000Z\"\n        },\n        {\n            \"id\": 2,\n            \"senderid\": 14,\n            \"sender\": \"Kasir CQE\",\n            \"receiverid\": 10,\n            \"receiver\": \"Fulan\",\n            \"message\": \"Hi juga 10\",\n            \"timestamp\": \"2023-12-10T11:04:00.000Z\"\n        },\n        {\n            \"id\": 3,\n            \"senderid\": 10,\n            \"sender\": \"Fulan\",\n            \"receiverid\": 14,\n            \"receiver\": \"Kasir CQE\",\n            \"message\": \"Apaka kabar kamu 14\",\n            \"timestamp\": \"2023-12-10T11:04:48.000Z\"\n        },\n        {\n            \"id\": 4,\n            \"senderid\": 14,\n            \"sender\": \"Kasir CQE\",\n            \"receiverid\": 10,\n            \"receiver\": \"Fulan\",\n            \"message\": \"Kabar ku baik 10, bagaimana denganmu?\",\n            \"timestamp\": \"2023-12-10T11:05:03.000Z\"\n        },\n        {\n            \"id\": 5,\n            \"senderid\": 14,\n            \"sender\": \"Kasir CQE\",\n            \"receiverid\": 10,\n            \"receiver\": \"Fulan\",\n            \"message\": \"Maaf aku harus pergi\",\n            \"timestamp\": \"2023-12-10T11:05:28.000Z\"\n        },\n        {\n            \"id\": 7,\n            \"senderid\": 10,\n            \"sender\": \"Fulan\",\n            \"receiverid\": 14,\n            \"receiver\": \"Kasir CQE\",\n            \"message\": \"Ok\",\n            \"timestamp\": \"2023-12-10T13:22:12.000Z\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "ADD Message for Chating FAIL",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('status code should be 400', () => {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test('response header Content-Type should be application/json', () => {\r",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.equals('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"pm.test('response body should be an object', () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson).to.be.an('object');\r",
+									"});\r",
+									"\r",
+									"pm.test('response body should have correct property and value', () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseJson).to.haveOwnProperty('code');\r",
+									"    pm.expect(responseJson).to.haveOwnProperty('status');\r",
+									"    pm.expect(responseJson).to.haveOwnProperty('message');\r",
+									"\r",
+									"    pm.expect(responseJson.code).to.equals('400');\r",
+									"    pm.expect(responseJson.status).to.equals('Bad Request');\r",
+									"    pm.expect(responseJson.message).to.equals('Please type message before sending');\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"message\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/chat/12",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"chat",
+								"12"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "ADD Message for Chating FAIL",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"message\": \"\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/chat/12",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"chat",
+										"12"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "84"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"54-B1calhWK/JbM+uPgNOVLEhlZ1OY\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 11 Dec 2023 10:17:21 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": \"400\",\n    \"status\": \"Bad Request\",\n    \"message\": \"Please type message before sending\"\n}"
+						}
+					]
+				},
+				{
+					"name": "ADD Message for Chating",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('status code should be 201', () => {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"pm.test('response header Content-Type should be application/json', () => {\r",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.equals('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"pm.test('response body should be an object', () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson).to.be.an('object');\r",
+									"});\r",
+									"\r",
+									"pm.test('response body should have correct property and value', () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseJson).to.haveOwnProperty('code');\r",
+									"    pm.expect(responseJson).to.haveOwnProperty('status');\r",
+									"    pm.expect(responseJson).to.haveOwnProperty('message');\r",
+									"\r",
+									"    pm.expect(responseJson.code).to.equals('201');\r",
+									"    pm.expect(responseJson.status).to.equals('Created');\r",
+									"    pm.expect(responseJson.message).to.equals('Success sending message');\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"message\": \"Hello, nice to meet you\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/chat/12",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"chat",
+								"12"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "ADD Message for Chating",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"message\": \"Hello, nice to meet you\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/chat/12",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"chat",
+										"12"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "69"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"45-w95v/LS+O1qbYCaVQL/cS3GNEAA\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 11 Dec 2023 10:17:29 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": \"201\",\n    \"status\": \"Created\",\n    \"message\": \"Success sending message\"\n}"
+						}
+					]
+				}
+			],
+			"description": "Folder Testing Chat endpoint"
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "books",
+			"value": "",
+			"type": "string",
+			"disabled": true
+		}
+	]
+}

@@ -8,8 +8,8 @@ const allUsers = () => {
 
 //get one user by email
 const oneUser = (email) => {
-  const sql = `SELECT * FROM users WHERE email='${email}'`;
-  return db.execute(sql);
+  const sql = `SELECT * FROM users WHERE email=?`;
+  return db.execute(sql, [email]);
 };
 
 //add user register
@@ -40,8 +40,8 @@ const verifyEmail = (email) => {
 
 //update data user
 const updateUser = (email, name, job, address, phone, img) => {
-  const sql = `UPDATE users SET name='${name}',job='${job}',address='${address}',phone='${phone}',img='${img}' WHERE email='${email}'`;
-  return db.execute(sql);
+  const sql = `UPDATE users SET name=?,job=?,address=?,phone=?,img=? WHERE email=?`;
+  return db.execute(sql, [name, job, address, phone, img, email]);
 };
 
 module.exports = {

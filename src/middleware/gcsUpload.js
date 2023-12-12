@@ -9,7 +9,7 @@ const Multer = require("multer");
 //save image temp to memory
 const multer = Multer({
   storage: Multer.memoryStorage(),
-  limits: { fileSize: 3 * 1024 * 1024 }, // Max size of file (byte), 3 MB
+  limits: { fileSize: 2 * 1024 * 1024 }, // Max size of file (byte), 2 MB
   fileFilter: function (req, file, cb) {
     // check allowed file type
     const allowedTypes = ["image/jpeg", "image/jpg", "image/png"];
@@ -33,12 +33,10 @@ const multerValidation = (req, res, next) => {
     multer.single("image")(req, res, function (err) {
       if (err instanceof Multer.MulterError) {
         // error from multer
-        console.log({ error: err.message });
-        return response.res400({ error: err.message }, res); //hadle error limite size
+        return response.res400(err.message, res); //hadle error limite size
       } else if (err) {
         // Another error
-        console.log({ error: err.message });
-        return response.res400({ error: err.message }, res); //handle error type
+        return response.res400(err.message, res); //handle error type
       }
       next();
     });

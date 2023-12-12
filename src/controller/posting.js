@@ -23,10 +23,27 @@ const allPostingByUser = async (req, res) => {
   }
 };
 
+const onePosting = async (req, res) => {
+  try {
+    const { idPosting } = req.params;
+    const [[data]] = await postingModel.onePosting(idPosting);
+    response.res200(data, res);
+  } catch (error) {
+    console.log(error);
+    response.res500(res);
+  }
+};
+
 const addPosting = async (req, res) => {
   try {
     const { id } = req.user;
     const { caption } = req.body;
+    if (!caption) {
+      return response.res400(
+        "Please type the caption or description of your post",
+        res
+      );
+    }
     if (req.file && req.file.cloudStoragePublicUrl) {
       const img = req.file.cloudStoragePublicUrl;
       await postingModel.addPosting(id, caption, img);
@@ -63,10 +80,10 @@ const deletePosting = async (req, res) => {
   try {
     const { id } = req.params;
     const [data] = await postingModel.deletePosting(id);
-    if(!data.affectedRows){
+    if (!data.affectedRows) {
       return response.res400("Sorry, posting is not exist", res);
     }
-    return response.res200("Success delete the posting", res);
+    return response.res200Msg("Success delete the posting", res);
   } catch (error) {
     console.log(error);
     response.res500(res);
@@ -76,6 +93,7 @@ const deletePosting = async (req, res) => {
 module.exports = {
   allPosting,
   allPostingByUser,
+  onePosting,
   addPosting,
   updatePosting,
   deletePosting,
