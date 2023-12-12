@@ -6,9 +6,21 @@ const postingController = require("./../controller/posting");
 const upload = require("./../middleware/gcsUpload");
 
 router.route("/").get(postingController.allPosting);
-router.route("/:idUser").get(postingController.allPostingByUser);
-router.route("/").post(postingController.addPosting);
-router.route("/:id").patch(postingController.updatePosting);
+router.route("/user").get(postingController.allPostingByUser);
+router
+  .route("/")
+  .post(
+    upload.multerValidation,
+    upload.uploadGcs,
+    postingController.addPosting
+  );
+router
+  .route("/:id")
+  .patch(
+    upload.multerValidation,
+    upload.uploadGcs,
+    postingController.updatePosting
+  );
 router.route("/:id").delete(postingController.deletePosting);
 
 module.exports = router;

@@ -102,7 +102,7 @@ const login = async (req, res) => {
     }
     //give token
     const payload = { id: data.id, email: data.email, entryTime: currentTime };
-    const token = jwt.sign(payload, process.env.JWT_SECRET);
+    const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '3h' }); //set token with expires 3 hours
 
     const user = {
       email: data.email,
@@ -148,7 +148,7 @@ const googleAuthorization = async (req, res) => {
 
     //give token
     const payload = { id: data.id, email: data.email, entryTime: currentTime };
-    const token = jwt.sign(payload, process.env.JWT_SECRET);
+    const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '3h' }); //set token with expires 3 hours
     const user = {
       email: data.email,
       name: data.name,

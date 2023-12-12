@@ -9,7 +9,7 @@ const Multer = require("multer");
 //save image temp to memory
 const multer = Multer({
   storage: Multer.memoryStorage(),
-  limits: { fileSize: 1 * 1024 * 1024 }, // Max size of file (byte), 3 MB
+  limits: { fileSize: 3 * 1024 * 1024 }, // Max size of file (byte), 3 MB
   fileFilter: function (req, file, cb) {
     // check allowed file type
     const allowedTypes = ["image/jpeg", "image/jpg", "image/png"];
@@ -27,7 +27,7 @@ const multer = Multer({
   },
 });
 
-const multerUpload = (req, res, next) => {
+const multerValidation = (req, res, next) => {
   // Error handler for multer
   try {
     multer.single("image")(req, res, function (err) {
@@ -64,16 +64,15 @@ function getPublicUrl(filename) {
   return "https://storage.googleapis.com/" + bucketName + "/" + filename;
 }
 
-let ImgUpload = {};
-
-ImgUpload.uploadToGcs = (req, res, next) => {
+const uploadGcs = (req, res, next) => {
   try {
+    const idUser = req.user.emailEncrypt; //get it user from auth middleware
     //check available image input
     if (!req.file) return next();
     //set name for file image before upload to gcs
     const currentTime = moment().format("YYYYMMDD-HHmmss");
     const randomInt = Math.floor(Math.random() * 100) + 1;
-    const gcsFileName = `${currentTime}-${randomInt}`;
+    const gcsFileName = `${idUser}/${currentTime}-${randomInt}`;
     const file = bucket.file(gcsFileName);
 
     const stream = file.createWriteStream({
@@ -100,4 +99,4 @@ ImgUpload.uploadToGcs = (req, res, next) => {
   }
 };
 
-module.exports = { multerUpload, ImgUpload };
+module.exports = { multerValidation, uploadGcs };
