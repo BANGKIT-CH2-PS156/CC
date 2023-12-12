@@ -14,7 +14,7 @@
 
 <!-- <img src="https://cdn-icons-png.flaticon.com/128/5432/5432492.png" width="70px"> -->
 <h3>API Documentation 🗎 </h3>
-<p>Our API Documentation build with <a href="https://www.postman.com/"><img src="https://symbiotics.co.za/wp-content/uploads/2017/10/postman-logo.png" width="50px"></a>: </p>
-<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRECLz-XFkGCMRcy8_t-lTHJ3VDkaOlFRqQQJkUjtZi161UGdKYZUML2dXmCVCZKlI3ZTQ&usqp=CAU">
-<a href="https://documenter.getpostman.com/view/27898805/2s9YkjA3Kv">CoffeeGit API Documentation</a>
+<p>Our API Documentation build with <a href="https://www.postman.com/"><img src="https://symbiotics.co.za/wp-content/uploads/2017/10/postman-logo.png" width="50px"></a>: <a href="https://documenter.getpostman.com/view/27898805/2s9YkjA3Kv">CoffeeGit API Documentation</a></p>
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRECLz-XFkGCMRcy8_t-lTHJ3VDkaOlFRqQQJkUjtZi161UGdKYZUML2dXmCVCZKlI3ZTQ&usqp=CAU" width="90%">
+
 
