@@ -8,11 +8,13 @@
 <img src="https://cdn.discordapp.com/attachments/1170360157256040448/1184265835301314611/Screenshot_2023-12-13_054645.png?ex=658b5881&is=6578e381&hm=6929a5488ac5e0be442a90727db1d1d311b61d562b9612c5dbf9c179456420fe&" width=90%>
 
 <h3>Design Database <img src="https://cdn3.emoji.gg/emojis/Database.png" width="20px" alt="Database"></h3>
-<p>In this project we use RDBMS namely <a href="https://www.mysql.com/"><img src="https://img.shields.io/badge/MySQL-005C84?style=for-the-badge&logo=mysql&logoColor=white" width="60px"></a>. We make 5 table to handle data for this application. Also we design our database with <a href="https://dbdiagram.io/home"></a></p>
+<p>In this project we use RDBMS namely <a href="https://www.mysql.com/"><img src="https://img.shields.io/badge/MySQL-005C84?style=for-the-badge&logo=mysql&logoColor=white" width="50px"></a>. We make 5 table to handle data for this application. Also we design our database with <a href="https://dbdiagram.io/home"></a></p>
 
 <img src="https://cdn.discordapp.com/attachments/1170360157256040448/1182212940284309524/Screenshot_2023-12-06_201829.png?ex=6583e099&is=65716b99&hm=6c3fc2c2dd8b477ed99d4e39526598b189eb8d8ffab4274102cc27f1f096b91c&" width=90%>
 
 <!-- <img src="https://cdn-icons-png.flaticon.com/128/5432/5432492.png" width="70px"> -->
 <h3>API Documentation 🗎 </h3>
-<p>Our API Documentation build with <a href="https://www.postman.com/"><img src="https://symbiotics.co.za/wp-content/uploads/2017/10/postman-logo.png" width="50px"></a>: <a href="https://documenter.getpostman.com/view/27898805/2s9YkjA3Kv">CoffeeGit API Documentation</a></p>
+<p>Our API Documentation build with <a href="https://www.postman.com/"><img src="https://symbiotics.co.za/wp-content/uploads/2017/10/postman-logo.png" width="50px"></a>: </p>
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRECLz-XFkGCMRcy8_t-lTHJ3VDkaOlFRqQQJkUjtZi161UGdKYZUML2dXmCVCZKlI3ZTQ&usqp=CAU">
+<a href="https://documenter.getpostman.com/view/27898805/2s9YkjA3Kv">CoffeeGit API Documentation</a>
 
