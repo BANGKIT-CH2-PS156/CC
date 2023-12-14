@@ -12,6 +12,12 @@ const oneUser = (email) => {
   return db.execute(sql, [email]);
 };
 
+//get one user by id
+const oneUserId = (id) => {
+  const sql = `SELECT * FROM users WHERE id=?`;
+  return db.execute(sql, [id]);
+};
+
 //add user register
 const addUser = (email, password) => {
   // take the word before @
@@ -47,6 +53,7 @@ const updateUser = (email, name, job, address, phone, img) => {
 module.exports = {
   allUsers,
   oneUser,
+  oneUserId,
   addUser,
   addUserGoogle,
   verifyEmail,

@@ -62,12 +62,12 @@ const verifyEmail = async (req, res) => {
     //check verify account
     const [[user]] = await userModel.oneUser(emailVerify);
     if (user.verify) {
-      return response.res400("Email has been verified", res);
+      return res.redirect("/verify/fail");
     }
     //verifying email
     await userModel.verifyEmail(emailVerify);
     console.log(`Successfully verify ${emailVerify}`);
-    response.res201(`Successfully verify ${emailVerify}`, res);
+    res.redirect("/verify/success");
   } catch (error) {
     console.log(error.message);
     response.res500(res);
@@ -102,7 +102,9 @@ const login = async (req, res) => {
     }
     //give token
     const payload = { id: data.id, email: data.email, entryTime: currentTime };
-    const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '3h' }); //set token with expires 3 hours
+    const token = jwt.sign(payload, process.env.JWT_SECRET, {
+      expiresIn: "3h",
+    }); //set token with expires 3 hours
 
     const user = {
       email: data.email,
@@ -148,7 +150,9 @@ const googleAuthorization = async (req, res) => {
 
     //give token
     const payload = { id: data.id, email: data.email, entryTime: currentTime };
-    const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '3h' }); //set token with expires 3 hours
+    const token = jwt.sign(payload, process.env.JWT_SECRET, {
+      expiresIn: "3h",
+    }); //set token with expires 3 hours
     const user = {
       email: data.email,
       name: data.name,

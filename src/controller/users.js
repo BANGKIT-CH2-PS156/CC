@@ -11,17 +11,30 @@ const allUsers = async (req, res) => {
   }
 };
 
+//show user by id
 const oneUser = async (req, res) => {
   try {
-    const { email } = req.user;
-    const [[data]] = await userModel.oneUser(email);
-    response.res200(data, res);
+    const { id } = req.params;
+    const [[data]] = await userModel.oneUserId(id);
+    const user = {
+      id: data.id,
+      email: data.email,
+      name: data.name,
+      job: data.job,
+      address: data.address,
+      phone: data.phone,
+      img: data.img,
+      create_at: data.create_at,
+      update_at: data.timestamp
+    };
+    response.res200(user, res);
   } catch (error) {
     console.log(error);
     response.res500(res);
   }
 };
 
+//update profiles user
 const updateUser = async (req, res) => {
   try {
     const { email } = req.user;
