@@ -38,7 +38,7 @@ const register = async (req, res) => {
     }
     //send verification email
     try {
-      sendMail(email);
+      sendMail(email, "verify-email");
     } catch (error) {
       console.log("Failed to send verification email");
       console.log(error);
@@ -169,6 +169,60 @@ const googleAuthorization = async (req, res) => {
   }
 };
 
+const forgotPassword = async (req, res) => {
+  try {
+    const { email } = req.body;
+    //check input is not empty
+    if (!email) {
+      return response.res400("Please input email", res);
+    }
+    //check email in database is already or not
+    const [[data]] = await userModel.oneUser(email);
+    if (!data) {
+      // return response.res403("User not Found", res);
+      return res.redirect("/sending/fail");
+    }
+    //send verification email
+    try {
+      sendMail(email, "reset-password");
+      res.redirect("/sending/success");
+    } catch (error) {
+      console.log("Failed to send verification email");
+      console.log(error);
+      response.res500(res);
+    }
+  } catch (error) {
+    console.log(error.message);
+    response.res500(res);
+  }
+};
+
+//verify account
+const resetPassword = async (req, res) => {
+  const { email, password, confirmPassword } = req.body;
+  const emailUser = Buffer.from(email, "base64").toString("utf-8");
+  try {
+    //check password input
+    if (password !== confirmPassword) {
+      // return response.res400("Password is not same", res);
+      return res.redirect(`reset/fail/${email}`)
+    }
+    //check email in database is already or not
+    const [[data]] = await userModel.oneUser(emailUser);
+    if (!data) {
+      return response.res403("User not Found", res);
+    }
+    //Insert new data to database
+    const pwHashed = await bcrypt.hash(password, 11);
+    await userModel.updatePassword(emailUser, pwHashed);
+    console.log(`Successfully reset password ${emailUser}`);
+    res.redirect("/reset/success");
+  } catch (error) {
+    console.log(error.message);
+    response.res500(res);
+  }
+};
+
 const logout = (req, res) => {
   try {
     const { authorization } = req.headers;
@@ -196,4 +250,6 @@ module.exports = {
   googleAuthorization,
   sendMail,
   logout,
+  forgotPassword,
+  resetPassword,
 };

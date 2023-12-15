@@ -50,6 +50,12 @@ const updateUser = (email, name, job, address, phone, img) => {
   return db.execute(sql, [name, job, address, phone, img, email]);
 };
 
+//update data user
+const updatePassword = (email,password) => {
+  const sql = `UPDATE users SET password=? WHERE email=?`;
+  return db.execute(sql, [password, email]);
+};
+
 module.exports = {
   allUsers,
   oneUser,
@@ -58,4 +64,5 @@ module.exports = {
   addUserGoogle,
   verifyEmail,
   updateUser,
+  updatePassword,
 };
