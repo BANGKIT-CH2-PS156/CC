@@ -6,8 +6,13 @@ const commentByPost = (idPost) => {
   const sql = `SELECT comment.id as id_comment, comment.id_posting, comment.id_user, users.name, comment.text, comment.timestamp
                FROM comment 
                INNER JOIN users ON comment.id_user = users.id
-               WHERE comment.id_posting=?`
+               WHERE comment.id_posting=?`;
   return db.execute(sql, [idPost]);
+};
+
+const oneCommentUser = (idComment, idUser) => {
+  const sql = `SELECT * FROM comment WHERE id=? AND id_user=?`;
+  return db.execute(sql, [idComment, idUser]);
 };
 
 const addComment = (idPost, idUser, text) => {
@@ -16,9 +21,9 @@ const addComment = (idPost, idUser, text) => {
   return db.execute(sql, [id, idPost, idUser, text]);
 };
 
-const deleteComment = (idComment) => {
-  const sql = `DELETE FROM comment WHERE id=?`;
-  return db.execute(sql, [idComment]);
+const deleteComment = (idComment, idUser) => {
+  const sql = `DELETE FROM comment WHERE id=? AND id_user=?`;
+  return db.execute(sql, [idComment, idUser]);
 };
 
-module.exports = { commentByPost, addComment, deleteComment };
+module.exports = { commentByPost, oneCommentUser, addComment, deleteComment };

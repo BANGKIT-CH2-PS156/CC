@@ -103,10 +103,11 @@ const login = async (req, res) => {
     //give token
     const payload = { id: data.id, email: data.email, entryTime: currentTime };
     const token = jwt.sign(payload, process.env.JWT_SECRET, {
-      expiresIn: "3h",
-    }); //set token with expires 3 hours
+      expiresIn: "2h",
+    }); //set token with expires 2 hours
 
     const user = {
+      id: data.id,
       email: data.email,
       name: data.name,
     };
@@ -205,7 +206,7 @@ const resetPassword = async (req, res) => {
     //check password input
     if (password !== confirmPassword) {
       // return response.res400("Password is not same", res);
-      return res.redirect(`reset/fail/${email}`)
+      return res.redirect(`reset/fail/${email}`);
     }
     //check email in database is already or not
     const [[data]] = await userModel.oneUser(emailUser);

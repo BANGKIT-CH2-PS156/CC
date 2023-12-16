@@ -27,6 +27,9 @@ const onePosting = async (req, res) => {
   try {
     const { idPosting } = req.params;
     const [[data]] = await postingModel.onePosting(idPosting);
+    if (!data) {
+      return response.res200([], res);
+    }
     response.res200(data, res);
   } catch (error) {
     console.log(error);

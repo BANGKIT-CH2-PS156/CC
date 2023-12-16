@@ -1,6 +1,4 @@
 node_modules/
 .env
 serviceaccountkey.json
-.dockerignore
 .gcloudignore
-Dockerfile

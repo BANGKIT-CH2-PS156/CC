@@ -30,9 +30,11 @@ const addComment = async (req, res) => {
 
 const deleteComment = async (req, res) => {
   try {
+    const idUser = req.user.id;
     const { id } = req.params;
-    const [data] = await commentModel.deleteComment(id);
+    const [data] = await commentModel.deleteComment(id, idUser);
     if (!data.affectedRows) {
+      console.log(data)
       return response.res400("Sorry comment is not exist", res);
     }
     return response.res200Msg("Success delete comment", res);

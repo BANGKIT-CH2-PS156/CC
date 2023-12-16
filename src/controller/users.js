@@ -16,6 +16,9 @@ const oneUser = async (req, res) => {
   try {
     const { id } = req.params;
     const [[data]] = await userModel.oneUserId(id);
+    if (!data) {
+      return response.res403("User not Found", res);
+    }
     const user = {
       id: data.id,
       email: data.email,
