@@ -20,12 +20,16 @@ const addPredict = async (req, res) => {
     if (req.file && req.file.cloudStoragePublicUrl) {
       const img = req.file.cloudStoragePublicUrl;
       //use axioo to request data from endpoint model (flask)
-      const {data} = await axios.post(process.env.ENDPOINT_PREDICT, {
+      const { data } = await axios.post(process.env.ENDPOINT_PREDICT, {
         image: `${img}`,
       });
-      const info = data.data.soil_types_prediction;
+      const info = data.data.result;
       await predictModel.addPredict(id, img, info);
-      return response.res200(data.data, res);
+      const result = {
+        "image": img,
+        "info": info,
+      };
+      return response.res200(result, res);
     }
     return response.res400("Image is not Exist", res);
   } catch (error) {
