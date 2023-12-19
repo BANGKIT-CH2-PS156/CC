@@ -8,6 +8,7 @@ const upload = require("../middleware/gcsUpload");
 const usersController = require("../controller/users");
 
 router.route("/").get(usersController.allUsers);
+router.route("/one").get(usersController.oneUserByToken);
 router.route("/:id").get(usersController.oneUser);
 
 router

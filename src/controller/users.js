@@ -37,6 +37,33 @@ const oneUser = async (req, res) => {
   }
 };
 
+//show user via Token
+const oneUserByToken = async (req, res) => {
+  try {
+    const { id } = req.user;
+    console.log(id)
+    const [[data]] = await userModel.oneUserId(id);
+    if (!data) {
+      return response.res403("User not Found", res);
+    }
+    const user = {
+      id: data.id,
+      email: data.email,
+      name: data.name,
+      job: data.job,
+      address: data.address,
+      phone: data.phone,
+      img: data.img,
+      create_at: data.create_at,
+      update_at: data.timestamp
+    };
+    response.res200(user, res);
+  } catch (error) {
+    console.log(error);
+    response.res500(res);
+  }
+};
+
 //update profiles user
 const updateUser = async (req, res) => {
   try {
@@ -72,4 +99,4 @@ const testUpload = (req, res) => {
   return response.res400("Image is not exist", res);
 };
 
-module.exports = { allUsers, oneUser, updateUser, testUpload };
+module.exports = { allUsers, oneUser, oneUserByToken, updateUser, testUpload };
