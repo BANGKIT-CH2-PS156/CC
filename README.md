@@ -1,6 +1,7 @@
 # ☁️ Cloud Computing CH2-PS156 ☁️
 
-🚀 Our Cloud Computing member repository to manage backend and build API in to our CoffeeGit Project
+<p>🚀 Our Cloud Computing member repository to manage backend and build API in to our CoffeeGit Project</p>
+<p>We designing architecture for cloud system and build the environment to store the resource and provide server to do the process in google cloud service. We also create a database with MySQL for organizes, integrates, and control the output of processes on the server and create Rest Api with the Express and Flask framework to simplify communication between databases, machine learning, and Android to serve data output</p>
 
 <H3>Infrastructure Project 🏢</H3>
 <p>We use 3 services in <a href="https://cloud.google.com/free/?utm_source=google&utm_medium=cpc&utm_campaign=japac-ID-all-id-dr-BKWS-all-super-trial-EXA-dr-1605216&utm_content=text-ad-none-none-DEV_c-CRE_664989825089-ADGP_Hybrid+%7C+BKWS+-+EXA+%7C+Txt+~+GCP_General_core+brand_main-KWID_43700077139981276-kwd-26415313501&userloc_9126017-network_g&utm_term=KW_google+cloud+platform&gad_source=1&gclid=CjwKCAiApuCrBhAuEiwA8VJ6Jh6tNgkZJt9Qeb8Lv4B-j-Iq5qjKeixDFP02GCCIUe9cmGrZhLeJnBoCOn8QAvD_BwE&gclsrc=aw.ds&hl=en"><img src="https://img.shields.io/badge/Google_Cloud-4285F4?style=for-the-badge&logo=google-cloud&logoColor=white" width="70px"></a> Platform for manage this project, namely <a href="https://cloud.google.com/run?hl=en">Cloud Run</a> for deploy API, <a href="https://cloud.google.com/compute?hl=en">Compute Engine</a> for database MYSQL, and <a href="https://cloud.google.com/storage/?hl=en">Cloud Storage</a> for handle file user and app.</p>

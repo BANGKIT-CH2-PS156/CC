@@ -9,7 +9,7 @@ const Multer = require("multer");
 //save image temp to memory
 const multer = Multer({
   storage: Multer.memoryStorage(),
-  limits: { fileSize: 2 * 1024 * 1024 }, // Max size of file (byte), 2 MB
+  limits: { fileSize: 6 * 1024 * 1024 }, // Max size of file (byte), 6 MB
   fileFilter: function (req, file, cb) {
     // check allowed file type
     const allowedTypes = ["image/jpeg", "image/jpg", "image/png"];
