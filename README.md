@@ -18,5 +18,43 @@
 <p>Our API Documentation build with <a href="https://www.postman.com/"><img src="https://symbiotics.co.za/wp-content/uploads/2017/10/postman-logo.png" width="50px"></a>: <a href="https://documenter.getpostman.com/view/27898805/2s9YkjA3Kv">CoffeeGit API Documentation</a></p>
 <!-- <a href="https://documenter.getpostman.com/view/27898805/2s9YkjA3Kv"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRECLz-XFkGCMRcy8_t-lTHJ3VDkaOlFRqQQJkUjtZi161UGdKYZUML2dXmCVCZKlI3ZTQ&usqp=CAU" width="75%"></a> -->
 
-<h3>How to Use this Code</h3>
-<p>...</p>
+<h3>Let's try our project</h3>
+<h5>Description</h5>
+<p>Main API for CoffeeGit app</p>
+<p>Language used: Javascript.</p>
+<p>Framework used: NodeJS</p>
+<p>Database used: MySQL</p>
+<p>Lastest update: v1.0</p>
+<p>To run the API locally, you need to:</p>
+<ol>
+  <li>Clone repository https://github.com/BANGKIT-CH2-PS156/CC or download to your local.</li>
+  <li>Open visual studio code and open the project</li>
+  <li>Open the terminal in visual studio code after you open the project</li>
+  <li>Run “npm install” to install all package</li>
+  <li>Don’t forget to create the database, you can import with we provide in folder “db” to your local MYSQL Database (XAMPP or anything)</li>
+  <li>Edit .env and adjust, fill like your setting. For the “Google Client ID ..etc” you must be seting google credential and create a bucket.</li>
+  <li>So first, open the google cloud platform, create new project</li>
+  <li>Open “APIs & Services”  “OAuth consent screen”, click “Configure Consenst Screen”</li>
+  <li>User Type choose “External” and “CREATE”</li>
+  <li>Fill App Information</li>
+  <li>Add your “Authorized domain” fill with your domain, and “Save and continue”</li>
+  <li>Click “ADD OR REMOVE SCOPES” choose “./auth/userinfo.email” and “./auth/userinfo.profile”, and “Save and continue”, fill your email for tester and “save and continue” again.</li>
+  <li>After that go to “Credentials”, click “+ CREATE CREDENTIALS”  and choose “OAuth client ID”</li>
+  <li>Choose “Application type”  “Web application”</li>
+  <li>Fill “Authorized JavaScript origins” with your domain</li>
+  <li>Fill “Authorized redirect URIs” add 2 URI with your domain then give “/auth/google” and with “https://developers.google.com/oauthplayground”</li>
+  <li>After that you “SAVE” and you can get “CLIENT ID” and “CLIENT SECRET”</li>
+  <li>Then you go to “https://developers.google.com/oauthplayground”</li>
+  <li>Click Setting in right above, than ceklis "Use your own OAuth credentials”, and fill the OAuth Client ID and OAuth Client secret with yours</li>
+  <li>Choose “Gmail API v1” in the left and click https://mail.google.com then click “Authorize APIs”</li>
+  <li>Click “Exchange authorization code for tokens”, after that you can get “Refresh token” then copy to .env</li>
+  <li>After that create a bucket, and copy the name of bucket to your .env and the name of your project GCP. </li>
+  <li>Don’t forget to create a “service accounts”, click menu “IAM & Admin” then “Service Accounts”</li>
+  <li>Click “+CREATE SERVIC ACCOUNT” fill the name what you want, then “CREATE AND CONTINUE”, and choose the Role “Cloud Storage”  “Storage Object Viewer”, then “Done”</li>
+  <li>Click bottom actions, and choose “Manage keys”, click “ADD KEY”  “Create new key” and create with key type “JSON”</li>
+  <li>You can automatic download the service account key, now copy all code in the file to file “serviceaccountkey.json” or replace the file with the same name in the project.</li>
+  <li>Last fill the endpoint of predict API (ML API), then complete.</li>
+  <li>Now you can run the project via terminal with “npm run start” or “npm run dev” (if your run with “... run dev” you must install nodemon first”.</li>
+  <li>Note: you can ignore the all google service (cliend ID and other) if you can’t use GCP, but you can’t run correctly the endpoint of /register and other endpoint to upload photo because this code use GCP for save the image file and use email sending for confirmation email to register.</li>
+  <li>Enjoy the code “Picking Hopes, Brewing Bonds, Pouring Knowledge”.</li>
+</ol>
