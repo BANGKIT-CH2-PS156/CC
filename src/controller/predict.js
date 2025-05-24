@@ -31,10 +31,10 @@ const addPredict = async (req, res) => {
       };
       return response.res200(result, res);
     }
-    return response.res400("Image is not Exist", res);
+    return response.res400Predict("Image is not Exist", res);
   } catch (error) {
     console.log(error);
-    response.res500(res);
+    response.res500Predict(res);
   }
 };
 

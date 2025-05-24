@@ -143,7 +143,7 @@ const googleAuthorization = async (req, res) => {
     });
 
     const { data } = await oauth2.userinfo.get();
-
+    console.log(data);
     if (!data.email || !data.name) {
       console.log(data);
       return response.res500(res);

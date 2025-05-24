@@ -33,6 +33,24 @@ const res201 = (message, res) => {
   });
 };
 
+const res400Predict = (message, res) => {
+  res.status(400).json({
+    code: "400",
+    status: "Bad Request",
+    message,
+    data: {}
+  });
+};
+
+const res500Predict = (message, res) => {
+  res.status(500).json({
+    code: "500",
+    status: "Internal Server Error",
+    message: "Sorry our server get error",
+    data:{}
+  });
+};
+
 const res400 = (message, res) => {
   res.status(400).json({
     code: "400",
@@ -83,4 +101,6 @@ module.exports = {
   res403,
   res404,
   res500,
+  res400Predict,
+  res500Predict
 };
